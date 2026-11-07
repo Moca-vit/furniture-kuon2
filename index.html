@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>久遠 KUON — 全幅案</title>
+<meta name="description" content="本文は細く、写真と動画は全幅。久遠トップページの比較用デザイン案（仮）">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>
+/* ページを開いたときは必ず先頭から表示し、見えない状態からふわっと表示する（スクロールして戻る動きを見せない） */
+(function(){try{history.scrollRestoration='manual'}catch(e){}
+if(location.hash)return;
+var h=document.documentElement;h.classList.add('pg-in');
+function top(){h.style.scrollBehavior='auto';window.scrollTo(0,0);try{h.scrollIntoView({block:'start',behavior:'instant'})}catch(e){}h.style.scrollBehavior=''}
+function go(){top();requestAnimationFrame(function(){h.classList.remove('pg-in')})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+var moved=false;['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(){moved=true},{once:true,passive:true})});
+addEventListener('load',function(){if(!moved)top()});
+setTimeout(function(){h.classList.remove('pg-in')},1500);
+})();
+</script>
+<style>
+:root{--accent:#7A2E22;--radius:2px;--bg:#FFF;--bg2:#F3F3F2;--ink:#222;--sub:#5F5F5F;--line:#DCDCDC;--gutter:24px;--col:720px;
+ --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--en:"Cormorant Garamond","Times New Roman",serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);color:var(--ink);background:var(--bg);line-height:2;font-size:15px;-webkit-font-smoothing:antialiased}
+body.open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;width:100%}
+.en{font-family:var(--en);letter-spacing:.28em;font-size:12px;color:var(--sub);text-transform:uppercase;margin-bottom:14px}
+h2{text-wrap:balance;word-break:keep-all;overflow-wrap:anywhere;font-size:clamp(22px,3.4vw,40px);font-weight:400;letter-spacing:.08em;line-height:1.6;margin-bottom:40px}
+h3{font-size:clamp(17px,1.7vw,21px);font-weight:500;letter-spacing:.1em;line-height:1.6}
+.sub{color:var(--sub)}
+small{font-size:12px;color:var(--sub);line-height:1.9}
+section{padding:clamp(96px,14vw,200px) 0}
+.alt{background:var(--bg2)}
+/* 本文は細い1列。左右はgutterで確保 */
+.wrap{max-width:calc(var(--col) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter)}
+/* 写真と動画は全幅 */
+.bleed{width:100%;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 40px;border:1px solid #8a8a8a;border-radius:var(--radius);color:var(--sub);letter-spacing:.2em;font-size:14px;transition:.3s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.f{background:var(--accent);border-color:var(--accent);color:#fff;min-height:64px;padding:0 56px;font-size:16px}
+/* ご来店予約ボタン：ホバーで白が左から広がり、文字が弁柄色に、矢印が現れる */
+.btn.f{position:relative;overflow:hidden;isolation:isolate}
+.btn.f::before{content:"";position:absolute;inset:0;background:#fff;transform:translateX(-101%);transition:transform .4s ease;z-index:-1}
+.btn.f::after{content:"\2192";display:inline-block;max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .35s,opacity .35s,margin .35s}
+.btn.f:hover,.btn.f:focus-visible{color:var(--accent);border-color:var(--accent)}
+.btn.f:hover::before,.btn.f:focus-visible::before{transform:none}
+.btn.f:hover::after,.btn.f:focus-visible::after{max-width:28px;opacity:1;margin-left:10px}
+.hero .btn.f{border:1px solid rgba(255,255,255,.75)}
+/* ヘッダー・メニューのリンク：ホバーで下線が横にスッと伸びる */
+#menu a:not(.nb){position:relative}
+#menu a:not(.nb)::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:currentColor;transition:width .4s ease}
+#menu a:not(.nb):hover::after,#menu a:not(.nb):focus-visible::after{width:100%}
+@media(min-width:1024px){#menu a:not(.nb)::after{bottom:8px}}
+/* ヘッダー・メニューの「ご来店予約」：ホバーで塗りが消えて、枠線＋文字だけに（大きくならない） */
+.nb.btn.f{overflow:visible}
+.nb.btn.f::before,.nb.btn.f::after{display:none}
+#menu a.nb.btn.f:hover,#menu a.nb.btn.f:focus-visible{background:transparent;color:#fff;border-color:#fff}
+header.s #menu a.nb.btn.f:hover,header.s #menu a.nb.btn.f:focus-visible,body.open #menu a.nb.btn.f:hover,body.open #menu a.nb.btn.f:focus-visible{color:var(--accent);border-color:var(--accent)}
+/* ハンバーガーボタン：ホバーで枠線と文字がはっきり変わる */
+#menu-btn{transition:background .3s,border-color .3s,color .3s}
+#menu-btn:hover{background:rgba(255,255,255,.16);border-color:#fff;color:#fff}
+header.s #menu-btn:hover,body.open #menu-btn:hover{background:transparent;border-color:var(--accent);color:var(--accent)}
+
+.hero .btn.f:hover,.hero .btn.f:focus-visible{border-color:#fff}
+@media(prefers-reduced-motion:reduce){.btn.f::before,.btn.f::after{transition:none}}
+.link{display:inline-flex;align-items:center;min-height:44px;color:var(--sub);letter-spacing:.12em;border-bottom:1px solid var(--line);background:linear-gradient(var(--ink),var(--ink)) left bottom/0 1px no-repeat;transition:background-size .4s ease,color .3s}
+.link:hover,.link:focus-visible{color:var(--ink);background-size:100% 1px}
+/* ヘッダー */
+header{position:fixed;inset:0 0 auto 0;z-index:30;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);color:#fff;transition:background .4s,color .4s,box-shadow .4s}
+header.s,body.open header{background:#fff;color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.logo{letter-spacing:.4em;font-size:18px;line-height:1.2}
+.logo small{display:block;font-family:var(--en);letter-spacing:.3em;font-size:10px;color:inherit;opacity:.8}
+#menu{position:fixed;inset:72px 0 0 0;background:#fff;color:var(--ink);padding:16px var(--gutter);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s}
+#menu.open{opacity:1;visibility:visible;transform:none}
+#menu a{display:flex;align-items:center;min-height:56px;border-bottom:1px solid var(--line);letter-spacing:.2em}
+#menu a.nb{margin-top:24px;justify-content:center;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:var(--radius)}
+#menu-btn{width:48px;height:48px;border:1px solid currentColor;border-radius:var(--radius);background:transparent;color:inherit;font-size:22px;cursor:pointer}
+#menu-btn .icon-close{display:none}#menu-btn.open .icon-open{display:none}#menu-btn.open .icon-close{display:inline}
+@media(min-width:1024px){
+ #menu-btn{display:none}
+ #menu{position:static;inset:auto;background:none;color:inherit;padding:0;opacity:1;visibility:visible;transform:none;display:flex;align-items:center;gap:32px}
+ #menu a{min-height:44px;border:0;font-size:13px}
+ #menu a.nb{margin:0;padding:0 24px;min-height:44px;font-size:13px}
+ header{padding:0 4vw}
+}
+/* ヒーロー：動画は全幅・全画面 */
+.hero{position:relative;height:100svh;min-height:560px;color:#fff;display:flex;align-items:flex-end;overflow:hidden;background:#2a2118}
+.hero video,.hero img.poster{position:absolute;inset:0;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,16,12,.92) 0%,rgba(20,16,12,.8) 38%,rgba(20,16,12,.15) 78%),linear-gradient(to bottom,rgba(20,16,12,.6),rgba(20,16,12,0) 120px)}
+@media(min-width:1024px){.hero::after{background:linear-gradient(to right,rgba(20,16,12,.85) 0%,rgba(20,16,12,.6) 40%,rgba(20,16,12,.1) 75%),linear-gradient(to top,rgba(20,16,12,.6),rgba(20,16,12,0) 45%),linear-gradient(to bottom,rgba(20,16,12,.7),rgba(20,16,12,0) 140px)}}
+.hero .in{position:relative;z-index:2;width:100%;padding:0 var(--gutter) clamp(56px,9vh,96px);max-width:1200px;margin:0 auto}
+.hero .en{color:rgba(255,255,255,.85)}
+.hero h1{font-weight:400;line-height:1.2}
+.hero .k{display:block;font-family:var(--en);font-weight:300;font-size:clamp(64px,13vw,168px);letter-spacing:.2em;line-height:1}
+.hero .s{display:block;font-size:clamp(16px,2vw,24px);letter-spacing:.14em;margin-top:20px}
+.hero .lead{margin:24px 0 36px;max-width:34em;color:rgba(255,255,255,.9)}
+/* 全幅の写真帯 */
+figure{margin:0}
+figure img,figure video{object-fit:cover}
+.band img,.band video{aspect-ratio:4/3}
+@media(min-width:768px){.band img,.band video{aspect-ratio:21/9}.band.tall img{aspect-ratio:16/9}}
+.pair{display:grid;grid-template-columns:1fr}
+.pair img{aspect-ratio:4/5}
+@media(min-width:768px){.pair{grid-template-columns:1fr 1fr}.pair img{aspect-ratio:3/4}}
+.cap{padding:28px 0 0}
+.cap h3{margin-bottom:6px}
+.cap.in-wrap{max-width:calc(var(--col) + var(--gutter)*2);margin:0 auto;padding:28px var(--gutter) 0}
+.pair .cap{padding:24px var(--gutter) 0}
+@media(min-width:768px){.pair .cap{padding:28px 4vw 0}}
+.trip{display:grid;grid-template-columns:1fr}
+.trip video{aspect-ratio:4/5;object-fit:cover}
+.trip figure+figure{margin-top:48px}
+@media(min-width:768px){.trip{grid-template-columns:repeat(3,1fr)}.trip video{aspect-ratio:3/4}.trip figure+figure{margin-top:0}}
+.pair video{aspect-ratio:4/5;object-fit:cover}
+@media(min-width:768px){.pair video{aspect-ratio:3/4}.pair figure+figure,.trip figure+figure{margin-top:0}}
+.trip .cap{padding:24px var(--gutter) 0}@media(min-width:768px){.trip .cap{padding:28px 2vw 0}}
+
+/* ホバー／タップで再生する動画（hero以外） */
+.pv{position:relative;cursor:pointer;background:#222;-webkit-tap-highlight-color:transparent}
+.pv:focus-visible{outline:2px solid var(--accent);outline-offset:-4px}
+.pv::after{content:"";position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(20,16,12,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 7l9 5-9 5z' fill='%23fff'/%3E%3C/svg%3E") center/28px no-repeat;border:1px solid rgba(255,255,255,.8);transition:opacity .3s;pointer-events:none}
+.pv.playing::after{opacity:0}
+.h-sp{display:none}@media(hover:none){.h-pc{display:none}.h-sp{display:inline}}
+.pv .hint{position:absolute;left:var(--gutter);bottom:16px;z-index:2;color:#fff;font-family:var(--en);letter-spacing:.24em;font-size:11px;text-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none;transition:opacity .3s}
+.pv.playing .hint{opacity:0}
+/* 椅子の写真の列（全幅）：自動で右へ流れ、ホバーで止まって少し拡大。JSが無い環境では横スクロール */
+.rail{overflow-x:auto;scrollbar-width:none;touch-action:pan-y}
+.rail::-webkit-scrollbar{display:none}
+.rail-track{display:flex;gap:12px;padding:0 var(--gutter);width:max-content}
+.rail figure{flex:0 0 78vw;margin:0}
+.rail .ph{overflow:hidden;background:#e2e2e2}
+.rail img{height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);user-select:none;-webkit-user-drag:none}
+.rail.auto{overflow:hidden;cursor:grab}
+.rail.auto.dragging{cursor:grabbing}
+.rail.auto .rail-track{padding:0;will-change:transform}
+.rail figure:hover img{transform:scale(1.07)}
+.rail .cap{padding:20px 0 0}
+.rail-ctl{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px var(--gutter) 0}
+.rail-hint{font-family:var(--en);letter-spacing:.24em;font-size:11px;color:var(--sub)}
+.rail-btns{display:flex;gap:8px;flex:none}
+.rh-sp{display:none}@media(hover:none){.rh-pc{display:none}.rh-sp{display:inline}}
+.rail-btn{width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #8a8a8a;border-radius:var(--radius);background:#fff;color:var(--ink);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.rail-btn svg{width:22px;height:22px}
+.rail-btn:hover,.rail-btn:active{background:var(--ink);border-color:var(--ink);color:#fff}
+.rail-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media(min-width:768px){.rail-track{gap:16px;padding:0 4vw}.rail.auto .rail-track{padding:0}.rail figure{flex-basis:30vw}.rail-ctl{padding:20px 4vw 0}}
+@media(min-width:1280px){.rail figure{flex-basis:calc((100vw - 8vw - 32px)/3)}}
+@media(prefers-reduced-motion:reduce){.rail img{transition:none}}
+/* 「イメージ」ラベル */
+.tag{position:absolute;left:var(--gutter);top:16px;z-index:2;background:rgba(20,16,12,.62);color:#fff;font-family:var(--en);letter-spacing:.24em;font-size:11px;line-height:1;padding:8px 12px;border-radius:2px;pointer-events:none}
+.pv .tag{left:12px;top:12px}
+/* ブランドフィルム（準備中）：静止画のスライドショー */
+.slide-stage{position:relative;overflow:hidden;background:#222;aspect-ratio:4/3}
+@media(min-width:768px){.slide-stage{aspect-ratio:16/9}}
+.slide-stage .slide{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;opacity:0;transform:scale(1);transition:opacity 1.2s ease}
+.slide-stage .slide.is-active{opacity:1;animation:kb 7s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.05)}}
+.slide-stage .tag-l{left:var(--gutter)}
+@media(min-width:768px){.slide-stage .tag-l{left:4vw}}
+.slide-ctl{position:absolute;right:var(--gutter);bottom:16px;z-index:2;display:flex;align-items:center;gap:14px;background:rgba(20,16,12,.55);padding:6px 12px 6px 6px;border-radius:2px}
+@media(min-width:768px){.slide-ctl{right:4vw}}
+.slide-pause{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:0;color:#fff;cursor:pointer}
+.slide-pause:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+.ic-pause{width:12px;height:14px;border-left:3px solid currentColor;border-right:3px solid currentColor}
+.slide-pause.is-paused .ic-pause{width:0;height:0;border:0;border-left:11px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.dots{display:flex;gap:8px}
+.dots button{position:relative;width:36px;height:44px;padding:0;border:0;background:transparent;cursor:pointer}
+.dots button::before,.dots button i{content:"";position:absolute;left:0;right:0;top:calc(50% - 1px);height:2px;transition:height .2s,top .2s}
+.dots button::before{background:rgba(255,255,255,.38)}
+.dots button i{background:#fff;transform:scaleX(0);transform-origin:left}
+.dots button:hover::before,.dots button:hover i{height:4px;top:calc(50% - 2px)}
+.dots button:focus-visible{outline:2px solid #fff;outline-offset:-2px}
+.dots button.on i{animation:dotfill 5s linear forwards}
+.dots.pz button.on i{animation:none;transform:scaleX(1)}
+@keyframes dotfill{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.slide-stage .slide{transition:none}.slide-stage .slide.is-active{animation:none}}
+.coll-gap{height:clamp(56px,8vw,112px)}
+/* 3つの強み */
+.three{margin-top:56px;border-top:1px solid var(--line)}
+.cell{padding:28px 0;border-bottom:1px solid var(--line)}
+.cell p{color:var(--sub);margin-top:6px}
+.dark{background:#1d1b19;color:#eee}
+.dark .en,.dark .sub,.dark .cell p{color:#bdbab5}.dark .three,.dark .cell{border-color:#444}
+.ba{display:grid;gap:0;margin:56px 0 0}
+.plate{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:radial-gradient(100% 90% at 70% 20%,#8d8672,#4b4538 60%,#1d1b17);color:#fff;font-family:var(--en);letter-spacing:.3em;font-size:12px}
+.ba .plate{aspect-ratio:16/10}
+@media(min-width:768px){.ba{grid-template-columns:1fr 1fr}.ba .plate{aspect-ratio:4/3}}
+.tl div{display:flex;gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl b{font-family:var(--en);font-weight:400;min-width:72px;letter-spacing:.1em}
+blockquote{margin-top:56px;padding-left:20px;border-left:1px solid var(--line);color:var(--sub)}
+cite{display:block;font-size:12px;margin-top:8px;font-style:normal}
+.flow div{padding:20px 0;border-bottom:1px solid var(--line);letter-spacing:.1em}
+.flow small{display:block;letter-spacing:0}
+.note{margin-top:40px;padding:24px;background:var(--bg2)}
+/* FAQ */
+.faq-item{border-top:1px solid var(--line)}.faq-item:last-of-type{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;min-height:56px;padding:12px 0;display:flex;align-items:center;justify-content:space-between;gap:20px;background:none;border:0;font:inherit;font-size:16px;letter-spacing:.06em;text-align:left;color:var(--ink);cursor:pointer}
+.faq-q::after{content:"+";font-size:22px;color:var(--sub)}.faq-item.open .faq-q::after{content:"−"}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.faq-item.open .faq-a{grid-template-rows:1fr}.faq-a>div{overflow:hidden}.faq-a p{padding:0 0 24px;color:var(--sub)}
+/* 3つの行動 */
+.acts{margin-top:48px;display:grid;gap:16px}
+.act{padding:28px;border:1px solid var(--line)}.act p{color:var(--sub);margin:6px 0 20px}
+.act.m{border-color:var(--accent)}
+.pro ul{margin:24px 0 32px;padding-left:1.2em;color:var(--sub)}
+footer{padding:80px var(--gutter);background:#1d1b19;color:#bdbab5;font-size:13px}
+footer .ft{max-width:calc(var(--col) + var(--gutter)*2);margin:0 auto;display:grid;gap:32px}
+footer a{display:block;padding:6px 0}
+#to-top{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));width:52px;height:52px;border:0;border-radius:var(--radius);background:#222;color:#fff;font-size:20px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .4s,transform .4s,visibility .4s;z-index:20}
+#to-top.is-visible{opacity:1;visibility:visible;transform:none}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+.draft{font-size:11px;color:var(--sub);margin-top:24px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.faq-a{transition:none}}
+
+/* ===== コレクション画像：ホバー拡大＋クリックで拡大表示（ライトボックス） ===== */
+.zm{overflow:hidden;background:#e2e2e2}
+.zm img{transition:transform .6s cubic-bezier(.2,.7,.2,1);cursor:zoom-in}
+.rail.auto:not(.dragging) img{cursor:zoom-in}
+@media(hover:hover) and (pointer:fine){.zm:hover img{transform:scale(1.04)}}
+#lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:64px 16px 28px;background:rgba(28,28,28,.9);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s;cursor:zoom-out}
+#lb.on{opacity:1;visibility:visible;transition:opacity .35s ease}
+#lb figure{margin:0;max-width:min(1200px,94vw);cursor:default;transform:scale(.96);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+#lb.on figure{transform:none}
+#lb img{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 170px);max-height:calc(100dvh - 170px);margin:0 auto;background:#e2e2e2}
+#lb figcaption{color:#e8e6e2;text-align:center;padding-top:16px}
+#lb figcaption h3{font-size:16px;font-weight:400;letter-spacing:.12em;margin:0 0 4px}
+#lb figcaption small{color:#bdbab5}
+#lb .x{position:absolute;top:12px;right:12px;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.55);border-radius:var(--radius);background:transparent;color:#fff;cursor:pointer;transition:background .3s,color .3s}
+#lb .x:hover,#lb .x:focus-visible{background:#fff;color:var(--ink)}
+#lb .x svg{width:20px;height:20px}
+@media(prefers-reduced-motion:reduce){#lb,#lb figure,.zm img{transition:none}}
+
+/* ライトボックス：動画モード（WORKSの3本） */
+#lb video{display:none;width:min(94vw,calc((100vh - 240px)*var(--ar,.5625)));width:min(94vw,calc((100dvh - 240px)*var(--ar,.5625)));aspect-ratio:var(--ar,.5625);height:auto;margin:0 auto;background:#111;object-fit:contain;cursor:pointer;transition:opacity .25s}
+#lb.vid video{display:block}
+#lb.vid #lb-img{display:none}
+#lb.vid figure{min-width:min(94vw,400px)}
+#lb .lb-bar{display:none;align-items:center;gap:8px;margin-top:12px;color:#e8e6e2}
+#lb.vid .lb-bar{display:flex}
+#lb .lb-c{font-family:var(--en);letter-spacing:.2em;font-size:12px;min-width:52px;text-align:center}
+#lb .lb-prog{flex:1;height:1px;background:rgba(255,255,255,.3);position:relative;margin:0 6px}
+#lb .lb-prog i{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(0)}
+#lb .lb-b{flex:none;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.55);border-radius:var(--radius);background:transparent;color:#fff;cursor:pointer;transition:background .3s,color .3s}
+#lb .lb-b:hover,#lb .lb-b:focus-visible{background:#fff;color:var(--ink)}
+#lb .lb-b svg{width:20px;height:20px}
+#lb .lb-b .i-play{display:none}#lb .lb-b.paused .i-play{display:inline}#lb .lb-b.paused .i-pause{display:none}
+#lb #lb-snd .w{display:none}#lb #lb-snd.on .w{display:inline}#lb #lb-snd.on .sl{display:none}
+body{opacity:1;transition:opacity .35s ease}
+html.pg-in body{opacity:0;transition:none}
+@media(prefers-reduced-motion:reduce){body{transition:none}}
+</style>
+</head>
+<body>
+<header id="h">
+  <a href="#top" class="logo">久遠<small>KUON · EST. 1889</small></a>
+  <nav id="menu" aria-label="メインメニュー"><a href="#collection">コレクション</a><a href="#story">ストーリー</a><a href="#works">納入実績</a><a href="#care">アフターケア</a><a href="#flow">ご相談の流れ</a><a href="#faq">よくある質問</a><a href="visit.html" class="nb btn f" style="min-height:44px;padding:0 24px;font-size:13px">ご来店予約</a></nav>
+  <button id="menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><span class="icon-open" aria-hidden="true">☰</span><span class="icon-close" aria-hidden="true">✕</span></button>
+</header>
+
+<main id="top">
+<!-- ヒーロー：全幅の動画 -->
+<div class="hero">
+  <picture><source media="(max-width:767px)" srcset="assets/hero-m-poster.jpg"><img class="poster" src="assets/hero-poster.jpg" alt="" aria-hidden="true" fetchpriority="high"></picture>
+  <video id="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-src="assets/hero.mp4" data-src-m="hero-m.mp4"></video>
+  <div class="in">
+    <p class="en">Since 1889 — Tokyo</p>
+    <h1><span class="k">KUON</span><span class="s">理想の住まいに、一生の家具を。</span></h1>
+    <p class="lead">百三十余年、一脚ずつ。世代を超えて座り継がれる家具を、職人の手でお届けします。</p>
+    <a href="visit.html" class="btn f">ご来店予約</a>
+  </div>
+</div>
+
+<!-- コレクション：写真は全幅、文章は細い列 -->
+<section id="collection" style="padding-bottom:0"><div class="wrap rv">
+  <p class="en">Collection</p><h2>住まいに置いた、久遠の家具。</h2>
+</div>
+<div class="coll-gap"></div>
+<figure class="band rv"><div class="zm"><img src="assets/dining1-1600.webp" srcset="assets/dining1-800.webp 800w, dining1-1600.webp 1600w" sizes="100vw" alt="明るい住まいに置かれたダイニングテーブルと椅子" loading="lazy"></div>
+  <figcaption class="cap in-wrap"><h3>ダイニングテーブル</h3><small>W1800×D900×H720 mm　ブラックチェリー　納期 約3〜4か月</small></figcaption></figure>
+<div class="coll-gap"></div>
+<div class="pair rv">
+  <figure><div class="pv" tabindex="0" role="button" aria-label="動画を再生・停止"><video muted loop playsinline preload="none" poster="assets/furniture-poster.jpg" aria-label="ダイニングチェアの映像" data-src="assets/furniture.mp4"></video><span class="hint"><span class="h-pc">HOVER TO PLAY</span><span class="h-sp">TAP TO PLAY</span></span></div><figcaption class="cap"><h3>ダイニングチェア</h3><small>W540×D560×H800 mm　ファブリック／スチール脚　納期 約2〜3か月（仮）</small></figcaption></figure>
+  <figure><div class="pv" tabindex="0" role="button" aria-label="動画を再生・停止"><video muted loop playsinline preload="none" poster="assets/furniture2-poster.jpg" aria-label="アームチェアの映像" data-src="assets/furniture2.mp4"></video><span class="hint"><span class="h-pc">HOVER TO PLAY</span><span class="h-sp">TAP TO PLAY</span></span></div><figcaption class="cap"><h3>アームチェア</h3><small>W560×D540×H830 mm　オーク／ブラック塗装　納期 約3〜4か月（仮）</small></figcaption></figure>
+</div>
+<div class="coll-gap"></div>
+<div class="pair rv">
+  <figure><div class="zm"><img src="assets/chair-1600.webp" srcset="assets/chair-800.webp 800w, chair-1600.webp 1600w" sizes="(min-width:768px) 50vw, 100vw" alt="ラウンジチェア" loading="lazy"></div><figcaption class="cap"><h3>ラウンジチェア</h3><small>W720×D780×H760 mm　オーク／本革　納期 約3〜4か月</small></figcaption></figure>
+  <figure><div class="zm"><img src="assets/sofa-1600.webp" srcset="assets/sofa-800.webp 800w, sofa-1600.webp 1450w" sizes="(min-width:768px) 50vw, 100vw" alt="三人掛けソファ" loading="lazy"></div><figcaption class="cap"><h3>三人掛けソファ</h3><small>W2100×D900×H780 mm　ウォールナット／ファブリック　納期 約4〜5か月</small></figcaption></figure>
+</div>
+<div class="coll-gap"></div>
+<div class="wrap rv" style="margin-bottom:40px"><p class="en">Chairs</p><h3 style="font-size:clamp(20px,2.4vw,28px)">椅子のシリーズ</h3></div>
+<div class="rail-wrap rv" id="rail-wrap">
+  <div class="rail" id="rail" aria-label="椅子のシリーズ（自動でゆっくり流れます。マウスを載せると止まります）">
+    <div class="rail-track" id="rail-track">
+    <figure><div class="ph"><img src="assets/ch-dining-960.webp" srcset="assets/ch-dining-640.webp 640w, ch-dining-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="ダイニングチェア（木製・本革座面）" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>ダイニングチェア</h3><small>タモ／本革　納期 約3か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-leather-960.webp" srcset="assets/ch-leather-640.webp 640w, ch-leather-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="黒い革張りのアームチェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>アームチェア</h3><small>ウォールナット／合成皮革　納期 約3か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-grey-960.webp" srcset="assets/ch-grey-640.webp 640w, ch-grey-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="グレーのファブリックのラウンジチェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>ラウンジチェア</h3><small>ブナ脚／ファブリック　納期 約4か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-lounge-960.webp" srcset="assets/ch-lounge-640.webp 640w, ch-lounge-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="木のフレームのリビングチェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>リビングチェア</h3><small>オーク／リネン　納期 約4か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-velvet-960.webp" srcset="assets/ch-velvet-640.webp 640w, ch-velvet-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="黒いベルベットのアームチェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>ベルベットチェア</h3><small>ベルベット／スチール脚　納期 約2か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-spot-960.webp" srcset="assets/ch-spot-640.webp 640w, ch-spot-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="キャメル色の革座面のスチールチェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>スチールチェア</h3><small>スチール／本革　納期 約2か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-bent-960.webp" srcset="assets/ch-bent-640.webp 640w, ch-bent-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="成形合板の一体成形チェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>成形合板チェア</h3><small>ブナ成形合板／スチール脚　納期 約2か月（仮）</small></figcaption></figure>
+    <figure><div class="ph"><img src="assets/ch-slat-960.webp" srcset="assets/ch-slat-640.webp 640w, ch-slat-960.webp 960w" sizes="(min-width:1280px) 30vw, (min-width:768px) 34vw, 78vw" width="960" height="1200" alt="横桟の背もたれをもつ木製チェア" loading="lazy" draggable="false"></div><figcaption class="cap"><h3>ラダーバックチェア</h3><small>ニレ／ファブリック　納期 約3か月（仮）</small></figcaption></figure>
+    </div>
+  </div>
+  <div class="rail-ctl">
+    <p class="rail-hint" id="rail-hint"><span class="rh-pc">HOVER TO PAUSE ／ 長押しで早送り・巻き戻し</span><span class="rh-sp">SWIPE ／ 長押しで早送り</span></p>
+    <div class="rail-btns">
+      <button type="button" class="rail-btn" id="rail-prev" aria-label="巻き戻し（押し続けると速く戻ります）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></button>
+      <button type="button" class="rail-btn" id="rail-next" aria-label="早送り（押し続けると速く進みます）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"/></svg></button>
+    </div>
+  </div>
+</div>
+<div class="coll-gap"></div>
+<figure class="band rv"><div class="zm"><img src="assets/dining3-1600.webp" srcset="assets/dining3-800.webp 800w, dining3-1600.webp 1600w" sizes="100vw" alt="黒いダイニングテーブルとグレーのファブリックチェア" loading="lazy"></div>
+  <figcaption class="cap in-wrap"><h3>ダイニングテーブル（ブラック）</h3><small>W2000×D950×H730 mm　オーク／黒塗装　納期 約4〜5か月（仮）</small></figcaption></figure>
+<div class="wrap"><p class="draft">※寸法・素材・納期は仮の内容です。サイズ・樹種の変更も承ります。</p></div>
+<div style="height:clamp(96px,14vw,200px)"></div>
+</section>
+
+<section class="alt"><div class="wrap rv">
+  <p class="en">Your Concern</p>
+  <h2>理想の家具が、見つからない。<br>そんなときは、久遠へ。</h2>
+  <p class="sub">おしゃれなだけでは、家は完成しません。創業135年、職人が一脚ずつ仕立てる家具は、あなたの住まいの寸法・素材・空気感に合わせて形になります。ご相談から納品まで、責任を持って伴走します。</p>
+  <div class="three">
+    <div class="cell"><h3>熟練の職人技</h3><p>素材・製法・歴史を、動画と年表でお見せします。</p><a href="#story" class="link" style="margin-top:14px">ストーリーを見る →</a></div>
+    <div class="cell"><h3>選び抜いた素材</h3><p>実際の住まいに置いた写真と、寸法・素材・納期を掲載。</p><a href="#collection" class="link" style="margin-top:14px">コレクションを見る →</a></div>
+    <div class="cell"><h3>住まいに合わせた設計</h3><p>張り替え・修復まで自社工房で一生お引き受けします。</p><a href="#care" class="link" style="margin-top:14px">アフターケアを見る →</a></div>
+  </div>
+</div></section>
+
+<section id="story" style="padding-bottom:0"><div class="wrap rv">
+  <p class="en">Our Story</p><h2>木と向き合って、百三十余年。</h2>
+  <div class="tl">
+    <div><b>1889</b>東京にて創業</div><div><b>1923</b>震災後、工房を再建</div><div><b>1964</b>迎賓施設へ納入</div><div><b>1998</b>三代目が木組みを継承</div><div><b>現在</b>四代目、38名の職人</div>
+  </div>
+  <p class="draft">※年表は仮の内容です</p>
+</div>
+<div class="coll-gap"></div>
+<figure class="band tall rv" id="story-slides">
+  <div class="slide-stage" role="group" aria-roledescription="スライドショー" aria-label="ブランドフィルム（準備中）のイメージ">
+    <img class="slide is-active" src="assets/craft-saw-1300.webp" srcset="assets/craft-saw-700.webp 700w, craft-saw-1300.webp 1300w" sizes="100vw" alt="帯のこで木材を切り出す職人の手元" style="object-position:50% 60%">
+    <img class="slide" src="assets/hero-poster.jpg" alt="木材を削る職人の手元" loading="lazy" style="object-position:50% 50%">
+    <img class="slide" src="assets/dining1-1600.webp" srcset="assets/dining1-800.webp 800w, dining1-1600.webp 1600w" sizes="100vw" alt="住まいに置かれたダイニングテーブル" loading="lazy">
+    <span class="tag tag-l">BRAND FILM　準備中</span>
+    <div class="slide-ctl">
+      <button type="button" class="slide-pause" id="slide-pause" aria-label="スライドショーを一時停止"><span class="ic-pause" aria-hidden="true"></span></button>
+      <span class="dots" id="slide-dots"></span>
+    </div>
+  </div>
+  <figcaption class="cap in-wrap"><h3 id="slide-title">一本の木から、一脚を。</h3><small>ブランドフィルム（約3分）は準備中です。静止画でイメージをお伝えしています。</small></figcaption></figure>
+<div class="wrap" style="margin-top:36px"><a href="company.html" class="link">会社概要・沿革を見る →</a></div>
+<div style="height:clamp(96px,14vw,200px)"></div>
+</section>
+
+<!-- 納入実績：動画は全幅 -->
+<section id="works" class="alt" style="padding-bottom:0"><div class="wrap rv">
+  <p class="en">Works</p><h2>住まいの中で、育つ家具。</h2>
+</div>
+<div class="coll-gap"></div>
+<div class="trip rv">
+  <figure><div class="pv" tabindex="0" data-lb="works" role="button" aria-label="クリックで拡大して再生"><video muted loop playsinline preload="none" poster="assets/house-poster.jpg" aria-label="軽井沢の住まいのリビング" data-src="assets/house.mp4" data-hd="assets/house-hd.mp4" data-ar="0.5625"></video><span class="tag">IMAGE</span><span class="hint"><span class="h-pc">HOVER TO PREVIEW ／ CLICK TO EXPAND</span><span class="h-sp">TAP TO EXPAND</span></span></div><figcaption class="cap"><h3>リビング・ダイニングのイメージ</h3><small>ストック映像（実際の納入実績ではありません）</small></figcaption></figure>
+  <figure><div class="pv" tabindex="0" data-lb="works" role="button" aria-label="クリックで拡大して再生"><video muted loop playsinline preload="none" poster="assets/house2-poster.jpg" aria-label="白を基調にした住まいの造作棚" data-src="assets/house2.mp4" data-hd="assets/house2-hd.mp4" data-ar="1.7778"></video><span class="tag">IMAGE</span><span class="hint"><span class="h-pc">HOVER TO PREVIEW ／ CLICK TO EXPAND</span><span class="h-sp">TAP TO EXPAND</span></span></div><figcaption class="cap"><h3>造作収納のイメージ</h3><small>ストック映像（実際の納入実績ではありません）</small></figcaption></figure>
+  <figure><div class="pv" tabindex="0" data-lb="works" role="button" aria-label="クリックで拡大して再生"><video muted loop playsinline preload="none" poster="assets/house3-poster.jpg" aria-label="円卓のあるダイニング" data-src="assets/house3.mp4" data-hd="assets/house3-hd.mp4" data-ar="0.5625"></video><span class="tag">IMAGE</span><span class="hint"><span class="h-pc">HOVER TO PREVIEW ／ CLICK TO EXPAND</span><span class="h-sp">TAP TO EXPAND</span></span></div><figcaption class="cap"><h3>円卓のダイニングのイメージ</h3><small>ストック映像（実際の納入実績ではありません）</small></figcaption></figure>
+</div>
+<div class="wrap rv"><p class="draft" style="margin-top:32px">※写真・映像はイメージです。実際の納入実績は準備中です。</p><blockquote>「図面に描いた空間が、そのまま現実になりました。十年後の姿が、今から楽しみです。」<cite>お客様の声（サンプルの文章です）</cite></blockquote></div>
+<div style="height:clamp(96px,14vw,200px)"></div>
+</section>
+
+<section id="care" class="dark"><div class="wrap rv">
+  <p class="en">After Care</p>
+  <h2>買って終わりではない。<br>一生、守り続ける家具。</h2>
+  <p class="sub">高額な買い物だからこそ、納得して選んでいただきたい。素材の選定から伝統の木組み、納品後の張り替え・修復まで、すべて自社工房で一貫対応します。</p>
+</div>
+<div class="wrap rv"><div class="three">
+  <div class="cell"><h3>張り替え</h3><p>座面・背もたれの生地や革を新しくします。クッション材も状態に合わせて入れ替えます。</p><small>目安：2〜4週間　3万円〜（仮）</small></div>
+  <div class="cell"><h3>塗り直し・再仕上げ</h3><p>天板や脚の傷・色あせを削り、塗装や漆を仕上げ直します。木目はそのまま活かします。</p><small>目安：3〜6週間　5万円〜（仮）</small></div>
+  <div class="cell"><h3>部材の交換・補修</h3><p>ぐらつきや割れを構造から診断し、必要な箇所だけを直します。金具の交換も承ります。</p><small>目安：2〜5週間　2万円〜（仮）</small></div>
+  <div class="cell"><h3>修理のご相談</h3><p>ご購入年を問いません。まずは状態の写真をお送りください。概算をお知らせします。</p><a href="#flow" class="link" style="margin-top:14px;color:#ddd;border-color:#555">ご相談の流れへ →</a></div>
+</div>
+<p class="draft" style="color:#9a968f">※修理の内容・目安期間・料金は仮のものです。施工前後の事例写真は準備中です。</p></div></section>
+
+<section id="flow"><div class="wrap rv">
+  <p class="en">Process</p><h2>ご相談から、納品まで。</h2>
+  <div class="flow">
+    <div>ご相談・ご来店<small>お住まいの計画をお聞かせください</small></div>
+    <div>採寸・ご提案<small>空間に合わせた家具をご提案</small></div>
+    <div>お見積り<small>仕様確定後にご提示</small></div>
+    <div>製作<small>職人が一点ずつ仕立てます</small></div>
+    <div>納品・アフター<small>設置後も長くお付き合い</small></div>
+  </div>
+  <div class="note">価格帯の目安：椅子 20万円〜、ソファ 80万円〜、テーブル 60万円〜。納期は約3〜5か月が目安です。<br><small>※金額・期間は仮の内容です。</small></div>
+  <p style="margin-top:28px"><a href="guide.html" class="link">ご購入ガイドで、流れ・お支払い・保証を詳しく見る →</a></p>
+</div></section>
+
+<section id="faq" class="alt"><div class="wrap rv">
+  <p class="en">Q &amp; A</p><h2>よくあるご質問</h2>
+  <div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa1" id="fq1">遠方でも対応してもらえますか？</button><div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>全国へお届けします。設置まで当社スタッフが伺います。オンラインでのご相談も承ります。</p></div></div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa2" id="fq2">納期が遅れることはありますか？</button><div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>製作の進み具合を、節目ごとにご連絡します。遅れが見込まれる場合は、事前にご相談します。</p></div></div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa3" id="fq3">支払い方法を教えてください。</button><div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>仕様確定時にお見積りをご提示し、ご契約時と納品時の分割でお支払いいただきます。</p></div></div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa4" id="fq4">サイズや仕様が合わなかった場合は？</button><div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>製作前に採寸とご確認を重ねます。製作開始後の変更は、内容に応じてご相談ください。</p></div></div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="fa5" id="fq5">修理は、購入から何年経っても頼めますか？</button><div class="faq-a" id="fa5" role="region" aria-labelledby="fq5"><div><p>ご購入年を問わず承ります。まずは状態をご相談ください。</p></div></div></div>
+  </div>
+  <p class="draft">※回答の内容は仮のものです。</p>
+</div></section>
+
+<section id="visit" style="padding-top:0">
+<figure class="band tall rv" style="margin-bottom:clamp(96px,14vw,200px)"><img src="assets/showroom-1300.webp" srcset="assets/showroom-700.webp 700w, showroom-1300.webp 1300w" sizes="100vw" alt="大きな窓から光が差し込むショールームの内観" loading="lazy" style="object-position:50% 64%">
+  <figcaption class="cap in-wrap"><h3>東京・青山のショールーム</h3><small>ご予約制。写真はイメージです（仮）。</small></figcaption></figure>
+<div class="wrap rv">
+  <p class="en">Contact</p><h2>ご自身のペースで、はじめてください。</h2>
+  <p class="sub">まずは資料から、具体的なご相談、そして実物のご体感まで。東京・青山のショールームは、ご予約制で専任スタッフがご案内します。</p>
+  <div class="acts">
+    <div class="act"><p class="en" style="margin:0">Easy</p><h3>まずは資料を見る</h3><p>コレクションと素材をまとめたカタログをお送りします。</p><a href="contact.html?type=catalog" class="btn">カタログ請求</a></div>
+    <div class="act"><p class="en" style="margin:0">Specific</p><h3>具体的に相談する</h3><p>お住まいの計画をもとに、概算をお出しします。</p><a href="contact.html?type=estimate" class="btn">お見積り依頼</a></div>
+    <div class="act m"><p class="en" style="margin:0">Experience</p><h3>実物に触れる</h3><p>木の香り、手触り、座り心地をご体感ください。</p><a href="visit.html" class="btn f">ご来店予約</a></div>
+  </div>
+</div></section>
+
+<section id="trade" class="alt"><div class="wrap rv pro">
+  <p class="en">For Architects &amp; Developers</p><h2>設計事務所・不動産会社の皆様へ</h2>
+  <p class="sub">図面段階からのご相談、別注寸法・樹種・仕上げへの対応、ホテルやレジデンスへの一括納入まで、専任担当が伴走します。</p>
+  <ul><li>BIM／CADデータのダウンロード</li><li>別注・オーダーメイドの設計協力</li><li>ホテル・レジデンス向け一括納品</li></ul>
+  <a href="trade.html" class="btn">設計者向けページへ</a>
+</div></section>
+</main>
+
+<footer><div class="ft">
+  <div><a href="#top" class="logo" style="color:#fff">久遠<small>KUON · EST. 1889</small></a><p style="margin-top:20px">〒107-0062 東京都港区南青山 0-0-0<br>営業 11:00–18:00（水曜定休・要予約）</p></div>
+  <div><a href="company.html">会社概要</a><a href="guide.html">ご購入ガイド</a><a href="#care">メンテナンス</a><a href="#trade">設計者・不動産会社の方へ</a><a href="contact.html">お問い合わせ</a></div>
+  <p style="font-family:var(--en);letter-spacing:.2em;font-size:11px">© KUON 1889 — 本ページは架空のブランドによるデザイン見本です</p>
+</div></footer>
+<button id="to-top" type="button" aria-label="ページの先頭へ戻る">↑</button>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="画像の拡大表示" aria-hidden="true">
+  <button type="button" class="x" id="lb-x" aria-label="閉じる"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+  <figure><img id="lb-img" src="" alt=""><video id="lb-vid" muted loop playsinline></video>
+    <div class="lb-bar">
+      <button type="button" class="lb-b" id="lb-prev" aria-label="前の映像"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <span class="lb-c" id="lb-count" aria-live="polite"></span>
+      <div class="lb-prog" aria-hidden="true"><i id="lb-prog"></i></div>
+      <button type="button" class="lb-b" id="lb-pp" aria-label="一時停止"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 5v14M15 5v14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="i-play" d="M8 5l11 7-11 7z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="lb-b" id="lb-snd" aria-label="音を出す" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path class="w" d="M16.5 9a4 4 0 010 6M19 6.5a8 8 0 010 11" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path class="sl" d="M4 4l16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+      <button type="button" class="lb-b" id="lb-next" aria-label="次の映像"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <figcaption id="lb-cap"></figcaption></figure>
+</div>
+<script>
+// Google Fontsは表示をじゃましないよう、あとから読み込む
+(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Shippori+Mincho:wght@400;500&display=swap';document.head.appendChild(l);})();
+
+// ヘッダー：スクロールしたら白地に
+var h=document.getElementById('h');
+addEventListener('scroll',function(){h.classList.toggle('s',scrollY>40)},{passive:true});
+
+// ふわっと表示
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+// 動画（hero以外）：最初は静止画。動画ファイルは再生する時に初めて読み込む（開いた瞬間の通信量と情報量を抑える）。
+//   PC（マウスあり）  ：マウスを載せると再生、離すと停止
+//   スマホ（タッチ） ：画面の中央に来た1本だけを、一度だけ再生して最後のコマで止める。タップで再生／停止／もう一度
+var isMobile=window.matchMedia('(max-width:767px)').matches;
+var canHover=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var conn=navigator.connection||{};
+var saveData=conn.saveData===true||/(^|-)2g$/.test(conn.effectiveType||'');
+var autoOnce=!canHover&&!reduce&&!saveData;   // スマホで自動の「一度だけ再生」を使うか
+function hintText(box,t){var h=box.querySelector('.h-sp');if(h)h.textContent=t}
+function playVid(box){
+  var v=box.querySelector('video');
+  if(!v.dataset.loaded){v.src=v.dataset.src;v.dataset.loaded='1'}
+  if(v.ended){v.currentTime=0}
+  var p=v.play();if(p&&p.catch)p.catch(function(){});
+  box.classList.add('playing');
+}
+function stopVid(box){box.querySelector('video').pause();box.classList.remove('playing')}
+function stopOthers(except){document.querySelectorAll('.pv.playing').forEach(function(b){if(b!==except)stopVid(b)})}
+document.querySelectorAll('.pv').forEach(function(box){
+  var v=box.querySelector('video');
+  if(!canHover){
+    v.loop=false;   // スマホは繰り返さず、1回で止める
+    v.addEventListener('ended',function(){box.classList.remove('playing');hintText(box,box.dataset.lb?'TAP TO EXPAND':'TAP TO REPLAY')});
+  }
+  if(canHover){
+    box.addEventListener('mouseenter',function(){playVid(box)});
+    box.addEventListener('mouseleave',function(){stopVid(box)});
+  }
+  function toggle(){
+    if(box.classList.contains('playing')){stopVid(box)}
+    else{stopOthers(box);playVid(box)}
+  }
+  if(box.dataset.lb){box.addEventListener('click',function(){openVideoLB(box)})}   // WORKSの映像：クリック（タップ）で拡大表示
+  else if(!canHover){box.addEventListener('click',toggle)}
+  box.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();if(box.dataset.lb){openVideoLB(box)}else{toggle()}}});
+});
+if(autoOnce){
+  // 画面の中央付近（上下35%を除いた帯）に入った動画を、まだ再生していなければ一度だけ再生
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    var box=e.target,v=box.querySelector('video');
+    if(e.isIntersecting){
+      if(!box.dataset.once){box.dataset.once='1';stopOthers(box);playVid(box)}
+    }else if(box.classList.contains('playing')){stopVid(box)}
+  })},{rootMargin:'-35% 0px -35% 0px',threshold:0});
+  document.querySelectorAll('.pv').forEach(function(box){cio.observe(box)});
+}
+
+// ヒーロー動画だけは自動再生：スマホ用/PC用を出し分け。通信量節約モード・「視覚効果を減らす」設定の人は静止画のまま
+var hv=document.getElementById('hero-video');
+if(!reduce&&!saveData){
+  hv.src=isMobile?hv.dataset.srcM:hv.dataset.src;
+  var hp=hv.play();if(hp&&hp.catch)hp.catch(function(){});
+}
+
+// 椅子の列：自動で左へゆっくり流れる／マウスを載せる・触れると止まる／矢印で早送り・巻き戻し（長押しで速く）
+(function(){
+  var rail=document.getElementById('rail'),track=document.getElementById('rail-track');
+  if(!rail||!track)return;
+  var prev=document.getElementById('rail-prev'),next=document.getElementById('rail-next');
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ① 同じ並びをもう1セット複製して、端がつながって見えるようにする
+  var orig=[].slice.call(track.children);
+  orig.forEach(function(f){var c=f.cloneNode(true);c.setAttribute('aria-hidden','true');track.appendChild(c)});
+  rail.classList.add('auto');
+  var DEFAULT=-1;                    // 標準の向き：-1＝左へ流れる（→で次の写真が右から現れる向き）
+  var setW=0,pos=0,dir=DEFAULT,boost=1,paused=false,visible=true,dragging=false,dragX=0,dragPos=0,resumeAt=0;
+  var BASE=36;                       // 1秒あたりに流れるpx（ゆっくり）
+  function measure(){
+    var gap=parseFloat(getComputedStyle(track).columnGap)||0;
+    setW=orig.length*(orig[0].getBoundingClientRect().width+gap);
+  }
+  function render(){
+    // pos が減るほど、画像は左へ流れる（pos が増えると右へ）
+    pos=((pos%setW)+setW)%setW;
+    track.style.transform='translate3d('+(pos-setW)+'px,0,0)';
+  }
+  var last=performance.now();
+  function tick(now){
+    var dt=Math.min(now-last,60)/1000;last=now;
+    if(setW&&visible&&!dragging&&!document.hidden){
+      var stopped=(paused&&boost===1)||reduceMotion&&boost===1||now<resumeAt&&boost===1;
+      if(!stopped){pos+=dir*BASE*boost*dt;render()}
+    }
+    requestAnimationFrame(tick);
+  }
+  // ② ホバー（PC）で止める。離すと再開
+  rail.addEventListener('mouseenter',function(){paused=true});
+  rail.addEventListener('mouseleave',function(){paused=false});
+  rail.addEventListener('focusin',function(){paused=true});
+  rail.addEventListener('focusout',function(){paused=false});
+  // ③ 指やマウスで直接ドラッグ。離したら2秒後に流れを再開
+  rail.addEventListener('pointerdown',function(e){dragging=true;dragX=e.clientX;dragPos=pos;rail.classList.add('dragging');rail.setPointerCapture(e.pointerId)});
+  rail.addEventListener('pointermove',function(e){if(!dragging)return;pos=dragPos+(e.clientX-dragX);render()});
+  function endDrag(){if(!dragging)return;dragging=false;rail.classList.remove('dragging');resumeAt=performance.now()+2000}
+  rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel',endDrag);
+  // ④ 矢印：クリックで1枚ぶん、長押しで速く（右矢印＝次へ早送り、左矢印＝前へ巻き戻し）
+  var stepAnim=null;
+  function step(sign){
+    var w=setW/orig.length,from=pos,to=pos+sign*w,t0=performance.now();
+    cancelAnimationFrame(stepAnim);
+    (function a(now){
+      var k=Math.min((now-t0)/450,1),e=1-Math.pow(1-k,3);
+      pos=from+(to-from)*e;render();
+      if(k<1)stepAnim=requestAnimationFrame(a);
+    })(t0);
+    resumeAt=performance.now()+2500;
+  }
+  function holdable(btn,sign){
+    var timer=null,held=false;
+    function down(e){
+      held=false;
+      timer=setTimeout(function(){held=true;dir=sign;boost=8;},280); // 280ms以上押し続けたら早送り／巻き戻し
+    }
+    function up(){
+      clearTimeout(timer);
+      if(held){boost=1;dir=DEFAULT;resumeAt=performance.now()+1500}
+      else if(timer!==null){step(sign)}
+      timer=null;held=false;
+    }
+    btn.addEventListener('pointerdown',down);
+    btn.addEventListener('pointerup',up);
+    btn.addEventListener('pointerleave',function(){if(held){boost=1;dir=DEFAULT}clearTimeout(timer);timer=null;held=false});
+    btn.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();step(sign)}});
+  }
+  holdable(next,-1);holdable(prev,1);   // →（次へ）は左へ動かす、←（前へ）は右へ動かす
+  // ⑤ 画面の外にあるときは動かさない（電池・CPUの節約）
+  new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(rail);
+  window.addEventListener('resize',function(){measure();render()});
+  measure();render();requestAnimationFrame(tick);
+})();
+
+// ブランドフィルム（準備中）：静止画のスライドショー。自動で切り替え／一時停止ボタン／ドットで選択
+(function(){
+  var box=document.getElementById('story-slides');if(!box)return;
+  var slides=[].slice.call(box.querySelectorAll('.slide')),dotsWrap=document.getElementById('slide-dots'),pause=document.getElementById('slide-pause'),title=document.getElementById('slide-title');
+  var titles=['一本の木から、一脚を。','手で削り、整える。','住まいの中の、一脚へ。'];
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur=0,timer=null,paused=reduce,visible=true;
+  var dots=slides.map(function(_,i){var b=document.createElement('button');b.type='button';b.appendChild(document.createElement('i'));b.setAttribute('aria-label',(i+1)+'枚目を表示');b.addEventListener('click',function(){show(i)});dotsWrap.appendChild(b);return b});
+  function show(i){
+    slides[cur].classList.remove('is-active');dots[cur].classList.remove('on');
+    cur=(i+slides.length)%slides.length;
+    slides[cur].classList.add('is-active');dots[cur].classList.add('on');
+    if(title)title.textContent=titles[cur]||titles[0];
+    restart();
+  }
+  function restart(){dotsWrap.classList.toggle('pz',paused);var f=dots[cur].firstChild;f.style.animation='none';void f.offsetWidth;f.style.animation='';clearInterval(timer);if(!paused&&visible)timer=setInterval(function(){show(cur+1)},5000)}
+  function setPaused(p){paused=p;pause.classList.toggle('is-paused',p);pause.setAttribute('aria-label',p?'スライドショーを再生':'スライドショーを一時停止');restart()}
+  pause.addEventListener('click',function(){setPaused(!paused)});
+  new IntersectionObserver(function(es){visible=es[0].isIntersecting;restart()}).observe(box);
+  // 先読み：スライド部分の1画面ぶん手前まで来たら、2・3枚目をまとめて読み込む
+  var pre=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;slides.forEach(function(s){s.loading='eager'});pre.disconnect()},{rootMargin:'100% 0px'});
+  pre.observe(box);
+  dots[0].classList.add('on');setPaused(paused);
+})();
+
+// FAQ：1つ開くと前のが閉じる（openクラスの付け外し）
+var faqItems=document.querySelectorAll('.faq-item');
+faqItems.forEach(function(item){
+  var b=item.querySelector('.faq-q');
+  b.addEventListener('click',function(){
+    var was=item.classList.contains('open');
+    faqItems.forEach(function(o){o.classList.remove('open');o.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+    if(!was){item.classList.add('open');b.setAttribute('aria-expanded','true')}
+  });
+});
+
+// ハンバーガー：classList.toggle('open')
+var menuBtn=document.getElementById('menu-btn'),menuNav=document.getElementById('menu');
+function toggleMenu(){
+  menuNav.classList.toggle('open');menuBtn.classList.toggle('open');document.body.classList.toggle('open');
+  var o=menuNav.classList.contains('open');
+  menuBtn.setAttribute('aria-expanded',o);menuBtn.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');
+}
+menuBtn.addEventListener('click',toggleMenu);
+menuNav.addEventListener('click',function(e){if(e.target.closest('a')&&menuNav.classList.contains('open'))toggleMenu()});
+window.matchMedia('(min-width:1024px)').addEventListener('change',function(e){if(e.matches&&menuNav.classList.contains('open'))toggleMenu()});
+
+// トップへ戻る
+var toTop=document.getElementById('to-top');
+function tt(){toTop.classList.toggle('is-visible',scrollY>400)}
+addEventListener('scroll',tt,{passive:true});tt();
+toTop.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'})});
+
+/* ===== ライトボックス（画像・動画の拡大表示） ===== */
+(function(){
+  function $(id){return document.getElementById(id)}
+  var lb=$('lb'),img=$('lb-img'),vid=$('lb-vid'),cap=$('lb-cap'),btn=$('lb-x'),fig=lb.querySelector('figure');
+  var prev=$('lb-prev'),next=$('lb-next'),pp=$('lb-pp'),snd=$('lb-snd'),count=$('lb-count'),prog=$('lb-prog');
+  var last=null,downX=0,downY=0,items=[],cur=0,timer=0,soundOn=false;
+  function setCap(f){var c=f&&f.querySelector('figcaption');cap.innerHTML=c?c.innerHTML:''}
+  function lock(on){
+    if(on){var sw=window.innerWidth-document.documentElement.clientWidth;document.body.style.overflow='hidden';if(sw)document.body.style.paddingRight=sw+'px'}
+    else{document.body.style.overflow='';document.body.style.paddingRight=''}
+  }
+  function clean(){fig.style.transition='';fig.style.transform='';fig.style.transformOrigin=''}
+  function flip(box,el){   // 小さい画面の位置 ⇄ 拡大位置 のあいだを、なめらかに動かす
+    var a=box.getBoundingClientRect(),b=el.getBoundingClientRect();
+    if(!b.width||!a.width)return null;
+    return 'translate('+(a.left-b.left)+'px,'+(a.top-b.top)+'px) scale('+(a.width/b.width)+')';
+  }
+  /* ---- 画像 ---- */
+  function openImg(src,f){
+    clearTimeout(timer);clean();
+    last=document.activeElement;
+    lb.classList.remove('vid');lb.setAttribute('aria-label','画像の拡大表示');
+    img.src=src.getAttribute('src');img.alt=src.alt||'';setCap(f);
+    lock(true);lb.classList.add('on');lb.setAttribute('aria-hidden','false');btn.focus({preventScroll:true});
+  }
+  /* ---- 動画（WORKSの3本をまとめて見られる） ---- */
+  function load(i,t){
+    var b=items[i],v=b.querySelector('video');
+    vid.style.setProperty('--ar',v.dataset.ar||'0.5625');
+    vid.poster=v.getAttribute('poster')||'';
+    vid.muted=!soundOn;
+    vid.onloadedmetadata=function(){if(t&&vid.duration)vid.currentTime=t%vid.duration};
+    vid.onloadeddata=function(){vid.style.opacity=1};
+    vid.src=v.dataset.hd;
+    var p=vid.play();if(p&&p.catch)p.catch(function(){});
+    vid.setAttribute('aria-label',v.getAttribute('aria-label')||'');
+    setCap(b.closest('figure'));
+    count.textContent=(i+1)+' / '+items.length;prog.style.transform='scaleX(0)';
+  }
+  function openVid(box){
+    items=[].slice.call(document.querySelectorAll('.pv[data-lb]'));cur=items.indexOf(box);if(cur<0)return;
+    clearTimeout(timer);clean();
+    var tv=box.querySelector('video'),t=tv.dataset.loaded?tv.currentTime:0;
+    stopOthers(null);stopVid(box);                       // 小さい方のプレビューは止める
+    last=document.activeElement;
+    lb.classList.add('vid');lb.setAttribute('aria-label','映像の拡大表示');
+    vid.style.opacity=1;load(cur,t);                     // プレビューの続きから再生
+    fig.style.transition='none';fig.style.transform='none';
+    lock(true);lb.classList.add('on');lb.setAttribute('aria-hidden','false');
+    if(!reduce){
+      var tr=flip(box,vid);
+      if(tr){fig.style.transformOrigin='0 0';fig.style.transform=tr;void fig.offsetWidth;
+        fig.style.transition='transform .55s cubic-bezier(.2,.7,.2,1)';fig.style.transform='none';
+        timer=setTimeout(clean,620)}
+    }
+    btn.focus({preventScroll:true});
+  }
+  function go(d){
+    if(!lb.classList.contains('vid'))return;
+    cur=(cur+d+items.length)%items.length;
+    vid.style.opacity=0;
+    setTimeout(function(){load(cur,0)},200);
+  }
+  window.openVideoLB=openVid;
+  /* ---- 閉じる ---- */
+  function close(){
+    if(!lb.classList.contains('on'))return;
+    var isVid=lb.classList.contains('vid');
+    if(isVid&&!reduce){   // 元の場所へ縮みながら閉じる
+      var box=items[cur],r=box.getBoundingClientRect();
+      if(r.bottom>0&&r.top<innerHeight){var tr=flip(box,vid);
+        if(tr){fig.style.transformOrigin='0 0';fig.style.transition='transform .35s cubic-bezier(.4,0,.2,1)';fig.style.transform=tr}}
+    }
+    lb.classList.remove('on');lb.setAttribute('aria-hidden','true');lock(false);
+    if(last&&last.focus)last.focus({preventScroll:true});
+    clearTimeout(timer);
+    timer=setTimeout(function(){clean();if(isVid){vid.pause();vid.removeAttribute('src');vid.load();lb.classList.remove('vid')}},isVid?450:0);
+  }
+  /* ---- 操作 ---- */
+  document.addEventListener('pointerdown',function(e){downX=e.clientX;downY=e.clientY},true);
+  document.addEventListener('click',function(e){
+    if(lb.contains(e.target))return;
+    if(Math.abs(e.clientX-downX)>6||Math.abs(e.clientY-downY)>6)return;   // ドラッグ操作は無視
+    var t=e.target;
+    if(t.id==='rail'||t.closest&&t.closest('#rail')&&t.tagName!=='IMG'){t=document.elementFromPoint(e.clientX,e.clientY)||t}  // 椅子レール：ドラッグ用の捕捉をすり抜けて画像を取得
+    var im=t.closest&&t.closest('.zm img, .rail img');
+    if(im)openImg(im,im.closest('figure'));
+  });
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});    // 背景のクリックで閉じる
+  btn.addEventListener('click',close);
+  prev.addEventListener('click',function(){go(-1)});
+  next.addEventListener('click',function(){go(1)});
+  function toggleP(){if(vid.paused){var p=vid.play();if(p&&p.catch)p.catch(function(){})}else vid.pause()}
+  pp.addEventListener('click',toggleP);vid.addEventListener('click',toggleP);
+  vid.addEventListener('play',function(){pp.classList.remove('paused');pp.setAttribute('aria-label','一時停止')});
+  vid.addEventListener('pause',function(){pp.classList.add('paused');pp.setAttribute('aria-label','再生')});
+  vid.addEventListener('timeupdate',function(){if(vid.duration)prog.style.transform='scaleX('+(vid.currentTime/vid.duration)+')'});
+  snd.addEventListener('click',function(){soundOn=!soundOn;vid.muted=!soundOn;snd.classList.toggle('on',soundOn);snd.setAttribute('aria-pressed',soundOn);snd.setAttribute('aria-label',soundOn?'音を消す':'音を出す')});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('on'))return;
+    if(e.key==='Escape')close();
+    else if(e.key==='ArrowRight')go(1);
+    else if(e.key==='ArrowLeft')go(-1);
+    else if(e.key==='Tab'){   // 拡大中は、フォーカスを拡大表示の中だけで回す
+      e.preventDefault();
+      var f=[].filter.call(lb.querySelectorAll('button'),function(b){return b.getClientRects().length});
+      var i=f.indexOf(document.activeElement);i=(i+(e.shiftKey?-1:1)+f.length)%f.length;f[i].focus();
+    }
+  });
+  var sx=0,sy=0;   // スマホ：左右スワイプで前後の映像、下スワイプで閉じる
+  lb.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY},{passive:true});
+  lb.addEventListener('touchend',function(e){
+    var t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)go(dx<0?1:-1);
+    else if(dy>80&&Math.abs(dy)>Math.abs(dx)*1.5)close();
+  },{passive:true});
+})();
+</script>
+</body>
+</html>

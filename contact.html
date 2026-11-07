@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>お問い合わせ｜久遠 KUON</title>
+<meta name="description" content="カタログ請求・お見積り依頼・修理のご相談など。久遠へのお問い合わせフォーム（デモ）">
+<script>
+/* ページを開いたときは必ず先頭から表示し、見えない状態からふわっと表示する（スクロールして戻る動きを見せない） */
+(function(){try{history.scrollRestoration='manual'}catch(e){}
+if(location.hash)return;
+var h=document.documentElement;h.classList.add('pg-in');
+function top(){h.style.scrollBehavior='auto';window.scrollTo(0,0);try{h.scrollIntoView({block:'start',behavior:'instant'})}catch(e){}h.style.scrollBehavior=''}
+function go(){top();requestAnimationFrame(function(){h.classList.remove('pg-in')})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+var moved=false;['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(){moved=true},{once:true,passive:true})});
+addEventListener('load',function(){if(!moved)top()});
+setTimeout(function(){h.classList.remove('pg-in')},1500);
+})();
+</script>
+<link rel="stylesheet" href="sub.css">
+<style>
+.hd{padding:calc(72px + clamp(64px,9vw,120px)) 0 clamp(40px,6vw,72px)}
+.form-wrap{padding-bottom:0}
+fieldset{border:0;min-width:0;margin-bottom:clamp(48px,7vw,72px)}
+.st{display:flex;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:28px;font-size:17px;letter-spacing:.12em;line-height:1.6}
+.st span{font-family:var(--en);letter-spacing:.2em;font-size:13px;color:var(--sub)}
+legend.st{float:left;width:100%}legend.st~*{clear:both}
+/* ご用件カード */
+.types{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:640px){.types{grid-template-columns:repeat(3,1fr)}}
+.tc{position:relative;display:block;cursor:pointer}
+.tc input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
+.tc span{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:88px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);line-height:1.6;transition:background .3s,color .3s,border-color .3s}
+.tc b{font-weight:500;letter-spacing:.08em;font-size:15px}
+.tc small{transition:color .3s}
+.tc:hover span{border-color:var(--ink)}
+.tc input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.tc input:checked+span small{color:#cfcdc8}
+.tc input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+/* 入力欄 */
+.row{display:grid;gap:20px}
+@media(min-width:640px){.row.two{grid-template-columns:1fr 1fr}}
+.fld{margin-bottom:20px}
+.row .fld{margin-bottom:0}
+.fld>label,.fld>.lb{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.req,.opt{font-size:10px;letter-spacing:.1em;line-height:1;padding:4px 7px;border-radius:var(--radius)}
+.req{background:var(--ink);color:#fff}
+.opt{border:1px solid var(--line);color:var(--sub)}
+.fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld input[type=date],.fld select,.fld textarea{width:100%;min-height:52px;padding:12px 14px;font-size:16px;border:1px solid #bdbdbd;border-radius:var(--radius);background:#fff;transition:border-color .25s,box-shadow .25s;appearance:none;-webkit-appearance:none}
+.fld select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23222' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:40px}
+.fld textarea{min-height:168px;line-height:1.9;resize:vertical}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--ink)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px rgba(34,34,34,.12)}
+.fld .hint{display:block;margin-top:6px}
+.em{display:none;margin-top:6px;font-size:12px;letter-spacing:.06em;color:var(--ink);font-weight:500}
+.em::before{content:"！ "}
+.fld.err input,.fld.err select,.fld.err textarea,.cons.err .box{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.fld.err .em,.cons.err .em{display:block}
+/* チェック・ラジオ（小さな選択肢） */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #bdbdbd;border-radius:var(--radius);font-size:14px;letter-spacing:.06em;transition:background .25s,color .25s,border-color .25s}
+.chip:hover span{border-color:var(--ink)}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+/* 用件別の入力（ふわっと開く） */
+.cond{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .5s ease,opacity .4s ease}
+.cond.open{grid-template-rows:1fr;opacity:1}
+.cond>.in{overflow:hidden;min-height:0;margin:0 -4px;padding:0 4px}
+.cond.open>.in{padding-top:4px;padding-bottom:4px}
+.cond .grp{border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px 8px;margin-bottom:20px}
+.cond .grp>.ttl{font-size:13px;letter-spacing:.14em;margin-bottom:18px;color:var(--ink)}
+.cond .note{font-size:12px;color:var(--sub);margin:-6px 0 20px}
+/* ファイル */
+.file{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.file input{position:absolute;width:1px;height:1px;opacity:0}
+.file label.pick{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid #8a8a8a;border-radius:var(--radius);font-size:13px;letter-spacing:.1em;color:var(--sub);cursor:pointer;transition:.3s;margin:0}
+.file label.pick:hover,.file input:focus-visible+label.pick{background:var(--ink);color:#fff;border-color:var(--ink)}
+.file .names{font-size:12px;color:var(--sub)}
+/* 同意・送信 */
+.cons{margin:8px 0 32px}
+.cons label{display:flex;gap:14px;align-items:flex-start;cursor:pointer;line-height:1.8}
+.cons input{position:absolute;opacity:0;width:1px;height:1px}
+.cons .box{flex:none;width:24px;height:24px;margin-top:2px;border:1px solid #8a8a8a;border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;transition:.25s}
+.cons .box svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:.25s}
+.cons input:checked+.box{background:var(--ink);border-color:var(--ink)}
+.cons input:checked+.box svg{opacity:1;transform:none}
+.cons input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
+.cons details{margin:10px 0 0 38px;font-size:12px;color:var(--sub)}
+.cons summary{cursor:pointer;display:inline-block;min-height:32px}
+.cons details p{margin-top:6px;line-height:1.9}
+.submit{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.submit .btn{width:100%;font-size:15px}
+@media(min-width:640px){.submit .btn{width:auto;min-width:320px}}
+.submit .btn[disabled]{opacity:.6;cursor:progress}
+.visit-link{margin-top:28px;padding:20px;border:1px solid var(--line);font-size:13px}
+.visit-link a{border-bottom:1px solid var(--ink)}
+/* 送信完了 */
+#done{padding:calc(72px + clamp(64px,9vw,120px)) 0 0;text-align:center}
+#done[hidden]{display:none}
+.ck{width:96px;height:96px;margin:0 auto 32px}
+.ck circle,.ck path{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+#done.show .ck circle{animation:dr .9s ease forwards}
+#done.show .ck path{animation:dr .5s .8s ease forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+#done dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;text-align:left;margin:40px auto 0;max-width:520px;padding:28px;border:1px solid var(--line);font-size:14px}
+#done dt{color:var(--sub);font-size:12px;letter-spacing:.1em;padding-top:2px}
+#done dd{word-break:break-all}
+#done .demo{margin:28px auto 0;max-width:520px;font-size:12px;color:var(--sub);line-height:1.9}
+#done .go{margin-top:40px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+<header class="sh">
+  <a href="index.html" class="logo">久遠<small>KUON · EST. 1889</small></a>
+  <div class="r"><a href="index.html" class="back">← トップへ戻る</a><a href="visit.html" class="btn nb">ご来店予約</a></div>
+</header>
+
+<main id="main">
+<div id="formpage">
+  <section class="hd"><div class="wrap">
+    <p class="en">Contact</p>
+    <h1>お問い合わせ</h1>
+    <p class="sub">カタログのご請求、お見積り、修理のご相談など、お気軽にご連絡ください。<br>通常、2営業日以内に担当よりご返信します。</p>
+  </div></section>
+
+  <div class="wrap form-wrap">
+  <form id="f" novalidate autocomplete="on">
+
+    <fieldset aria-describedby="e-type">
+      <legend class="st"><span>01</span>ご用件を選んでください</legend>
+      <div class="types" role="radiogroup">
+        <label class="tc"><input type="radio" name="type" value="catalog"><span><b>カタログ請求</b><small>コレクションと素材の冊子</small></span></label>
+        <label class="tc"><input type="radio" name="type" value="estimate"><span><b>お見積り依頼</b><small>お住まいの計画をもとに概算</small></span></label>
+        <label class="tc"><input type="radio" name="type" value="repair"><span><b>修理のご相談</b><small>張り替え・修復など</small></span></label>
+        <label class="tc"><input type="radio" name="type" value="visit"><span><b>ご来店のご相談</b><small>ショールームのご案内</small></span></label>
+        <label class="tc"><input type="radio" name="type" value="trade"><span><b>設計者・不動産会社の方</b><small>図面・別注・一括納品</small></span></label>
+        <label class="tc"><input type="radio" name="type" value="other"><span><b>その他</b><small>上記以外のご質問</small></span></label>
+      </div>
+      <p class="em" id="e-type" role="alert">ご用件を1つ選んでください。</p>
+    </fieldset>
+
+    <fieldset>
+      <legend class="st"><span>02</span>お客様の情報</legend>
+      <div class="row two">
+        <div class="fld" id="fl-name"><label for="name">お名前<span class="req">必須</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="例）山田 太郎" aria-describedby="e-name" required><p class="em" id="e-name" role="alert">お名前を入力してください。</p></div>
+        <div class="fld"><label for="kana">フリガナ<span class="opt">任意</span></label><input id="kana" name="kana" type="text" placeholder="例）ヤマダ タロウ"></div>
+      </div>
+      <div class="row two" style="margin-top:20px">
+        <div class="fld" id="fl-email"><label for="email">メールアドレス<span class="req">必須</span></label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="例）name@example.com" aria-describedby="e-email" required><p class="em" id="e-email" role="alert">メールアドレスを正しい形式で入力してください。</p></div>
+        <div class="fld"><label for="tel">お電話番号<span class="opt">任意</span></label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="例）090-0000-0000"></div>
+      </div>
+      <div class="cond" data-for="estimate trade"><div class="in"><div class="fld" style="margin-top:20px"><label for="company">会社名・屋号<span class="opt">任意</span></label><input id="company" name="company" type="text" autocomplete="organization" placeholder="例）○○設計事務所"></div></div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="st"><span>03</span>ご用件の詳細<small style="margin-left:auto;font-size:12px">わかる範囲で構いません</small></legend>
+
+      <p class="sub" id="pick-first" style="font-size:13px">先に「01 ご用件」を選ぶと、必要な項目がここに表示されます。</p>
+
+      <!-- カタログ請求 -->
+      <div class="cond" data-for="catalog"><div class="in">
+        <div class="grp"><p class="ttl">ご希望のカタログ</p>
+          <div class="chips" style="margin-bottom:20px">
+            <label class="chip"><input type="checkbox" name="cat" value="家具カタログ" checked><span>家具カタログ</span></label>
+            <label class="chip"><input type="checkbox" name="cat" value="素材見本帳（布・革）"><span>素材見本帳（布・革）</span></label>
+            <label class="chip"><input type="checkbox" name="cat" value="修理・メンテナンスのご案内"><span>修理・メンテナンスのご案内</span></label>
+          </div>
+        </div>
+        <div class="grp"><p class="ttl">お届け先</p>
+          <p class="note">ご住所をご入力いただくと、冊子を郵送でお届けします。空欄の場合は、PDF版をメールでお送りします。</p>
+          <div class="row two">
+            <div class="fld"><label for="zip">郵便番号<span class="opt">任意</span></label><input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="例）107-0062"></div>
+            <div class="fld"><label for="pref">都道府県<span class="opt">任意</span></label><select id="pref" name="pref" autocomplete="address-level1" data-pref><option value="">選択してください</option></select></div>
+          </div>
+          <div class="fld" style="margin-top:20px"><label for="addr">市区町村・番地<span class="opt">任意</span></label><input id="addr" name="addr" type="text" autocomplete="street-address" placeholder="例）港区南青山 0-0-0"></div>
+          <div class="fld"><label for="bldg">建物名・部屋番号<span class="opt">任意</span></label><input id="bldg" name="bldg" type="text" autocomplete="address-line2"></div>
+        </div>
+      </div></div>
+
+      <!-- お見積り依頼 -->
+      <div class="cond" data-for="estimate"><div class="in">
+        <div class="grp"><p class="ttl">お住まいの計画</p>
+          <div class="row two">
+            <div class="fld"><label for="stage">計画の段階<span class="opt">任意</span></label><select id="stage" name="stage"><option value="">選択してください</option><option>これから検討する</option><option>土地探し中</option><option>設計中</option><option>着工前</option><option>工事中</option><option>入居済み（買い替え・買い足し）</option></select></div>
+            <div class="fld"><label for="when">家具が必要な時期<span class="opt">任意</span></label><select id="when" name="when"><option value="">選択してください</option><option>3か月以内</option><option>半年以内</option><option>1年以内</option><option>1年以上先</option><option>未定</option></select></div>
+          </div>
+          <div class="row two" style="margin-top:20px">
+            <div class="fld"><label for="epref">設置場所（都道府県）<span class="opt">任意</span></label><select id="epref" name="epref" data-pref><option value="">選択してください</option></select></div>
+            <div class="fld"><label for="budget">ご予算の目安<span class="opt">任意</span></label><select id="budget" name="budget"><option value="">選択してください</option><option>〜100万円</option><option>100〜300万円</option><option>300〜500万円</option><option>500万円以上</option><option>相談して決めたい</option></select></div>
+          </div>
+        </div>
+        <div class="grp"><p class="ttl">ご検討中の家具（複数選択可）</p>
+          <div class="chips" style="margin-bottom:20px">
+            <label class="chip"><input type="checkbox" name="items" value="ダイニングテーブル"><span>ダイニングテーブル</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="チェア"><span>チェア</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="ソファ"><span>ソファ</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="ローテーブル"><span>ローテーブル</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="収納"><span>収納</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="ベッド"><span>ベッド</span></label>
+            <label class="chip"><input type="checkbox" name="items" value="まだ決めていない"><span>まだ決めていない</span></label>
+          </div>
+          <div class="fld"><div class="lb">図面・間取り図<span class="opt">任意</span></div>
+            <div class="file"><input id="plan" name="plan" type="file" accept="image/*,application/pdf" multiple><label class="pick" for="plan">ファイルを選ぶ</label><span class="names" id="plan-n">PDF・画像（あれば）</span></div></div>
+        </div>
+      </div></div>
+
+      <!-- 修理 -->
+      <div class="cond" data-for="repair"><div class="in">
+        <div class="grp"><p class="ttl">修理したい家具</p>
+          <div class="row two">
+            <div class="fld"><label for="rname">家具の種類・品名<span class="opt">任意</span></label><input id="rname" name="rname" type="text" placeholder="例）ダイニングチェア"></div>
+            <div class="fld"><label for="ryear">ご購入の時期<span class="opt">任意</span></label><input id="ryear" name="ryear" type="text" placeholder="例）2008年ごろ／わからない"></div>
+          </div>
+          <div class="fld" style="margin-top:20px"><div class="lb">状態のわかる写真<span class="opt">任意</span></div>
+            <div class="file"><input id="rphoto" name="rphoto" type="file" accept="image/*" multiple><label class="pick" for="rphoto">写真を選ぶ</label><span class="names" id="rphoto-n">全体と傷みのある部分（あれば）</span></div>
+            <small class="hint">写真があると、概算をスムーズにお知らせできます。</small></div>
+        </div>
+      </div></div>
+
+      <!-- ご来店 -->
+      <div class="cond" data-for="visit"><div class="in">
+        <div class="grp"><p class="ttl">ご来店のご希望</p>
+          <p class="note">ショールームはご予約制です。日にち・人数を選んで申し込むときは、<a href="visit.html" style="border-bottom:1px solid var(--ink)">ご来店予約ページ</a>が便利です。ここからのご相談も承ります。</p>
+          <div class="row two">
+            <div class="fld"><label for="d1">第1希望日<span class="opt">任意</span></label><div class="dp"><input id="d1" type="text" readonly data-date data-closed="3" data-max="180" placeholder="日にちを選ぶ"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div></div>
+            <div class="fld"><label for="d2">第2希望日<span class="opt">任意</span></label><div class="dp"><input id="d2" type="text" readonly data-date data-closed="3" data-max="180" placeholder="日にちを選ぶ"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div></div>
+          </div>
+          <div class="row two" style="margin-top:20px">
+            <div class="fld"><label for="slot">ご希望の時間帯<span class="opt">任意</span></label><select id="slot" name="slot"><option value="">選択してください</option><option>11:00〜13:00</option><option>13:00〜15:00</option><option>15:00〜17:00</option><option>どちらでも</option></select></div>
+            <div class="fld"><label for="ppl">ご来店の人数<span class="opt">任意</span></label><select id="ppl" name="ppl"><option value="">選択してください</option><option>1名</option><option>2名</option><option>3名</option><option>4名以上</option></select></div>
+          </div>
+          <small style="display:block;margin-top:12px">営業 11:00–18:00／水曜定休（仮）</small>
+        </div>
+      </div></div>
+
+      <!-- 設計者・不動産 -->
+      <div class="cond" data-for="trade"><div class="in">
+        <div class="grp"><p class="ttl">プロジェクトについて</p>
+          <div class="row two">
+            <div class="fld"><label for="biz">ご職種<span class="opt">任意</span></label><select id="biz" name="biz"><option value="">選択してください</option><option>設計事務所</option><option>工務店・ゼネコン</option><option>デベロッパー・不動産会社</option><option>ホテル・商業施設</option><option>インテリアコーディネーター</option><option>その他</option></select></div>
+            <div class="fld"><label for="ptype">物件の種類<span class="opt">任意</span></label><select id="ptype" name="ptype"><option value="">選択してください</option><option>戸建住宅</option><option>集合住宅・レジデンス</option><option>ホテル・宿泊施設</option><option>店舗・オフィス</option><option>その他</option></select></div>
+          </div>
+          <div class="fld" style="margin-top:20px"><div class="lb">ご希望の資料（複数選択可）</div>
+            <div class="chips">
+              <label class="chip"><input type="checkbox" name="docs" value="BIM／CADデータ"><span>BIM／CADデータ</span></label>
+              <label class="chip"><input type="checkbox" name="docs" value="別注仕様のご案内"><span>別注仕様のご案内</span></label>
+              <label class="chip"><input type="checkbox" name="docs" value="一括納品のご案内"><span>一括納品のご案内</span></label>
+            </div></div>
+        </div>
+      </div></div>
+    </fieldset>
+
+    <fieldset>
+      <legend class="st"><span>04</span>メッセージ・ご連絡方法</legend>
+      <div class="fld"><label for="msg">メッセージ<span class="opt">任意</span></label><textarea id="msg" name="msg" placeholder="ご質問やご要望をご自由にお書きください。"></textarea></div>
+      <div class="row two" style="margin-top:20px">
+        <div class="fld"><div class="lb" id="ct-l">ご希望のご連絡方法</div>
+          <div class="chips" role="radiogroup" aria-labelledby="ct-l">
+            <label class="chip"><input type="radio" name="contact" value="メール" checked><span>メール</span></label>
+            <label class="chip"><input type="radio" name="contact" value="お電話"><span>お電話</span></label>
+          </div></div>
+        <div class="fld"><label for="ctime">電話の場合のご都合のよい時間帯</label><select id="ctime" name="ctime"><option value="">指定なし</option><option>午前（11:00〜13:00）</option><option>午後（13:00〜16:00）</option><option>夕方（16:00〜18:00）</option></select></div>
+      </div>
+    </fieldset>
+
+    <div class="cons" id="cons">
+      <label><input type="checkbox" id="agree" name="agree" aria-describedby="e-agree" required><span class="box"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3.2 3L12 3.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>個人情報の取り扱いに同意します<span class="req" style="margin-left:8px">必須</span></span></label>
+      <details><summary>個人情報の取り扱いについて（仮）</summary><p>ご入力いただいた内容は、お問い合わせへの対応、カタログ等の発送、ご連絡のためにのみ使用し、ご本人の同意なく第三者へ提供することはありません。※本ページは架空のブランドによるデザイン見本のため、実際の運用文面ではありません。</p></details>
+      <p class="em" id="e-agree" role="alert" style="margin-left:38px">同意にチェックを入れてください。</p>
+    </div>
+
+    <div class="submit">
+      <button type="submit" class="btn" id="send">この内容で送信する</button>
+      <small>送信後、ご入力のメールアドレスへ受付のご連絡をお送りします（デモのため実際には送信されません）。</small>
+    </div>
+
+    <p class="visit-link">ご来店のご予約は、<a href="visit.html">ご来店予約ページ</a>からも、日にちを選んで申し込めます。</p>
+  </form>
+  </div>
+</div>
+
+<section id="done" hidden aria-live="polite"><div class="wrap">
+  <svg class="ck" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" pathLength="1"/><path d="M28 50l14 14 27-30" pathLength="1"/></svg>
+  <p class="en">Thank you</p>
+  <h1 tabindex="-1" id="done-h">お問い合わせを受け付けました</h1>
+  <p class="sub">担当より、2営業日以内にご連絡いたします。<br>お急ぎの場合は、お電話（0X-XXXX-XXXX／営業時間内）でも承ります。</p>
+  <dl id="sum"></dl>
+  <p class="demo">※このページは架空のブランドによるデザイン見本です。入力内容は送信・保存されません。</p>
+  <div class="go"><a href="index.html" class="btn">トップへ戻る</a><a href="contact.html" class="link" id="again">別の内容で送る</a></div>
+</div></section>
+</main>
+
+<footer><div class="ft">
+  <a href="index.html" class="logo">久遠<small>KUON · EST. 1889</small></a>
+  <p>〒107-0062 東京都港区南青山 0-0-0<br>営業 11:00–18:00（水曜定休・要予約）</p>
+  <div class="fl"><a href="company.html">会社概要</a><a href="guide.html">ご購入ガイド</a><a href="visit.html">ご来店予約</a><a href="contact.html">お問い合わせ</a></div>
+  <p style="font-family:var(--en);letter-spacing:.2em;font-size:11px">© KUON 1889 — 本ページは架空のブランドによるデザイン見本です</p>
+</div></footer>
+
+<script src="sub.js"></script>
+<script>
+
+/* ---------- 都道府県の選択肢 ---------- */
+var PREFS='北海道,青森県,岩手県,宮城県,秋田県,山形県,福島県,茨城県,栃木県,群馬県,埼玉県,千葉県,東京都,神奈川県,新潟県,富山県,石川県,福井県,山梨県,長野県,岐阜県,静岡県,愛知県,三重県,滋賀県,京都府,大阪府,兵庫県,奈良県,和歌山県,鳥取県,島根県,岡山県,広島県,山口県,徳島県,香川県,愛媛県,高知県,福岡県,佐賀県,長崎県,熊本県,大分県,宮崎県,鹿児島県,沖縄県'.split(',');
+document.querySelectorAll('select[data-pref]').forEach(function(s){PREFS.forEach(function(p){var o=document.createElement('option');o.textContent=p;s.appendChild(o)})});
+
+var f=document.getElementById('f'),LABEL={catalog:'カタログ請求',estimate:'お見積り依頼',repair:'修理のご相談',visit:'ご来店のご相談',trade:'設計者・不動産会社の方',other:'その他'};
+
+/* ---------- ご用件に合わせて入力項目を切り替える ---------- */
+var conds=[].slice.call(f.querySelectorAll('.cond')),hintEl=document.getElementById('pick-first');
+function setType(v){
+  conds.forEach(function(c){
+    var on=!!v&&c.dataset.for.split(' ').indexOf(v)>-1;
+    c.classList.toggle('open',on);c.inert=!on;
+    c.querySelectorAll('input,select,textarea').forEach(function(el){el.disabled=!on});
+  });
+  hintEl.style.display=v?'none':'';
+  if(v==='other'){hintEl.style.display='';hintEl.textContent='ご用件の追加項目はありません。下のメッセージ欄にご記入ください。'}
+  else hintEl.textContent='先に「01 ご用件」を選ぶと、必要な項目がここに表示されます。';
+  clearErr(document.getElementById('e-type'));
+}
+f.querySelectorAll('input[name=type]').forEach(function(r){r.addEventListener('change',function(){setType(r.value)})});
+// リンク元（?type=catalog など）に合わせて最初から選んでおく
+var q=new URLSearchParams(location.search).get('type'),qr=q&&f.querySelector('input[name=type][value="'+q+'"]');
+if(qr){qr.checked=true;setType(q)}else setType('');
+var today=new Date(),iso=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+// 選んだファイル名を表示
+[['plan','plan-n','PDF・画像（あれば）'],['rphoto','rphoto-n','全体と傷みのある部分（あれば）']].forEach(function(a){
+  var i=document.getElementById(a[0]),n=document.getElementById(a[1]);
+  i.addEventListener('change',function(){n.textContent=i.files.length?[].map.call(i.files,function(x){return x.name}).join('、'):a[2]});
+});
+
+/* ---------- 入力チェック ---------- */
+function clearErr(e){if(e)e.style.display=''}
+function mark(box,bad){box.classList.toggle('err',bad);var inp=box.querySelector('input,select,textarea');if(inp)inp.setAttribute('aria-invalid',bad?'true':'false')}
+var nameBox=document.getElementById('fl-name'),mailBox=document.getElementById('fl-email'),nameI=document.getElementById('name'),mailI=document.getElementById('email'),agree=document.getElementById('agree'),cons=document.getElementById('cons'),typeErr=document.getElementById('e-type');
+var MAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function okName(){return nameI.value.trim().length>0}
+function okMail(){return MAIL.test(mailI.value.trim())}
+nameI.addEventListener('blur',function(){mark(nameBox,!okName())});
+mailI.addEventListener('blur',function(){mark(mailBox,!okMail())});
+nameI.addEventListener('input',function(){if(nameBox.classList.contains('err'))mark(nameBox,!okName())});
+mailI.addEventListener('input',function(){if(mailBox.classList.contains('err'))mark(mailBox,!okMail())});
+agree.addEventListener('change',function(){cons.classList.toggle('err',!agree.checked)});
+
+f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var type=(f.querySelector('input[name=type]:checked')||{}).value,bad=[];
+  typeErr.style.display=type?'':'block';if(!type)bad.push(f.querySelector('input[name=type]'));
+  mark(nameBox,!okName());if(!okName())bad.push(nameI);
+  mark(mailBox,!okMail());if(!okMail())bad.push(mailI);
+  cons.classList.toggle('err',!agree.checked);if(!agree.checked)bad.push(agree);
+  if(bad.length){bad[0].focus({preventScroll:true});bad[0].scrollIntoView({block:'center',behavior:'smooth'});return}
+  var btn=document.getElementById('send');btn.disabled=true;btn.textContent='送信しています…';
+  setTimeout(function(){showDone(type)},700);
+});
+
+/* ---------- 送信後の画面（デモ：実際には送信しません） ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function showDone(type){
+  var d=new FormData(f),rows=[['受付番号','KUON-'+String(today.getFullYear()).slice(2)+String(today.getMonth()+1).padStart(2,'0')+String(today.getDate()).padStart(2,'0')+'-'+String(Math.floor(1000+Math.random()*9000))],['ご用件',LABEL[type]],['お名前',d.get('name')],['メール',d.get('email')]];
+  var list=[].concat(d.getAll('cat'),d.getAll('items'),d.getAll('docs'));if(list.length)rows.push(['ご希望',list.join('、')]);
+  var msg=(d.get('msg')||'').trim();if(msg)rows.push(['メッセージ',msg.length>80?msg.slice(0,80)+'…':msg]);
+  document.getElementById('sum').innerHTML=rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('');
+  document.getElementById('formpage').hidden=true;
+  var done=document.getElementById('done');done.hidden=false;
+  requestAnimationFrame(function(){done.classList.add('show')});
+  window.scrollTo(0,0);document.getElementById('done-h').focus({preventScroll:true});
+}
+document.getElementById('again').addEventListener('click',function(e){e.preventDefault();location.href='contact.html'});
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ご来店予約｜久遠 KUON</title>
+<meta name="description" content="東京・青山のショールームは完全予約制。当日の流れと、ご予約フォーム（デモ）">
+<script>
+/* ページを開いたときは必ず先頭から表示し、見えない状態からふわっと表示する（スクロールして戻る動きを見せない） */
+(function(){try{history.scrollRestoration='manual'}catch(e){}
+if(location.hash)return;
+var h=document.documentElement;h.classList.add('pg-in');
+function top(){h.style.scrollBehavior='auto';window.scrollTo(0,0);try{h.scrollIntoView({block:'start',behavior:'instant'})}catch(e){}h.style.scrollBehavior=''}
+function go(){top();requestAnimationFrame(function(){h.classList.remove('pg-in')})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+var moved=false;['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(){moved=true},{once:true,passive:true})});
+addEventListener('load',function(){if(!moved)top()});
+setTimeout(function(){h.classList.remove('pg-in')},1500);
+})();
+</script>
+<link rel="stylesheet" href="sub.css">
+<style>
+.vhero{margin:calc(72px) 0 0;position:relative}
+.vhero img{display:block;width:100%;height:clamp(240px,42vw,460px);object-fit:cover;object-position:50% 64%;background:#e2e2e2}
+.vhead{padding-top:clamp(40px,6vw,72px)}
+.pts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+@media(min-width:640px){.pts{grid-template-columns:repeat(4,1fr)}}
+.pts>div{border:1px solid var(--line);padding:18px 12px;text-align:center;line-height:1.6}
+.pts b{display:block;font-weight:500;font-size:16px;letter-spacing:.08em}
+.pts span{display:block;font-size:12px;color:var(--sub);margin-top:2px}
+.cta-row{margin-top:32px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.cta-row .btn{width:100%}@media(min-width:640px){.cta-row{flex-direction:row;align-items:center;gap:24px}.cta-row .btn{width:auto}}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}
+.tiles figure img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#e2e2e2}
+.tiles figcaption{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.7;letter-spacing:.06em}
+.mapbox{margin-top:24px;border:1px solid var(--line);background:var(--bg2);aspect-ratio:16/9;max-height:300px;width:100%}
+.mapbox svg{display:block;width:100%;height:100%}
+/* フォーム */
+.form-wrap fieldset{border:0;min-width:0;margin-bottom:clamp(40px,6vw,56px)}
+.st{display:flex;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:24px;font-size:17px;letter-spacing:.12em;line-height:1.6}
+.st span{font-family:var(--en);letter-spacing:.2em;font-size:13px;color:var(--sub)}
+legend.st{float:left;width:100%}legend.st~*{clear:both}
+.row{display:grid;gap:20px}
+@media(min-width:640px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:repeat(3,1fr)}}
+.fld{margin-bottom:20px}.row .fld{margin-bottom:0}
+.fld>label,.fld>.lb{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
+.req,.opt{font-size:10px;letter-spacing:.1em;line-height:1;padding:4px 7px;border-radius:var(--radius)}
+.req{background:var(--ink);color:#fff}.opt{border:1px solid var(--line);color:var(--sub)}
+.fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld input[type=date],.fld select,.fld textarea{width:100%;min-height:52px;padding:12px 14px;font-size:16px;border:1px solid #bdbdbd;border-radius:var(--radius);background:#fff;transition:border-color .25s,box-shadow .25s;appearance:none;-webkit-appearance:none}
+.fld select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23222' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:40px}
+.fld textarea{min-height:140px;line-height:1.9;resize:vertical}
+.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--ink)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px rgba(34,34,34,.12)}
+.em{display:none;margin-top:6px;font-size:12px;letter-spacing:.06em;color:var(--ink);font-weight:500}.em::before{content:"！ "}
+.fld.err input,.fld.err select,.fld.err textarea,.cons.err .box{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.fld.err .em,.cons.err .em{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #bdbdbd;border-radius:var(--radius);font-size:14px;letter-spacing:.06em;transition:background .25s,color .25s,border-color .25s}
+.chip:hover span{border-color:var(--ink)}
+.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.cons{margin:8px 0 28px}
+.cons label{display:flex;gap:14px;align-items:flex-start;cursor:pointer;line-height:1.8}
+.cons input{position:absolute;opacity:0;width:1px;height:1px}
+.cons .box{flex:none;width:24px;height:24px;margin-top:2px;border:1px solid #8a8a8a;border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;transition:.25s}
+.cons .box svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:.25s}
+.cons input:checked+.box{background:var(--ink);border-color:var(--ink)}.cons input:checked+.box svg{opacity:1;transform:none}
+.cons input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
+.cons details{margin:10px 0 0 38px;font-size:12px;color:var(--sub)}.cons summary{cursor:pointer;display:inline-block;min-height:32px}.cons details p{margin-top:6px;line-height:1.9}
+.submit{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.submit .btn{width:100%;font-size:15px}@media(min-width:640px){.submit .btn{width:auto;min-width:320px}}
+.submit .btn[disabled]{opacity:.6;cursor:progress}
+.hintbox{font-size:12px;color:var(--sub);margin-top:8px}
+/* 完了 */
+#done{padding:calc(72px + clamp(64px,9vw,120px)) 0 0;text-align:center}#done[hidden]{display:none}
+.ck{width:96px;height:96px;margin:0 auto 32px}
+.ck circle,.ck path{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+#done.show .ck circle{animation:dr .9s ease forwards}#done.show .ck path{animation:dr .5s .8s ease forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+#done dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;text-align:left;margin:40px auto 0;max-width:520px;padding:28px;border:1px solid var(--line);font-size:14px}
+#done dt{color:var(--sub);font-size:12px;letter-spacing:.1em;padding-top:2px}#done dd{word-break:break-all}
+#done .demo{margin:28px auto 0;max-width:520px;font-size:12px;color:var(--sub);line-height:1.9}
+#done .go{margin-top:40px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:center}
+</style>
+</head>
+<body>
+<div id="rp" aria-hidden="true"></div>
+<header class="sh">
+  <a href="index.html" class="logo">久遠<small>KUON · EST. 1889</small></a>
+  <div class="r"><a href="index.html" class="back">← トップへ戻る</a><a href="#reserve" class="btn nb">予約フォームへ</a></div>
+</header>
+
+<main>
+<div id="page">
+  <figure class="vhero"><img src="showroom-1300.webp" srcset="showroom-700.webp 700w, showroom-1300.webp 1300w" sizes="100vw" alt="大きな窓から光が差し込むショールームの内観" width="1300" height="868"></figure>
+
+  <section class="vhead"><div class="wrap">
+    <p class="en">Showroom Visit</p>
+    <h1>ショールームで、<br class="pc">実物に触れてください。</h1>
+    <p class="sub">東京・青山のショールームは、完全予約制です。専任のスタッフが、お住まいの計画にあわせてご案内します。</p>
+    <div class="pts" aria-label="ご来店の要点">
+      <div><b>約90分</b><span>ゆっくりご覧いただけます</span></div>
+      <div><b>完全予約制</b><span>貸し切りでご案内</span></div>
+      <div><b>売り込みなし</b><span>ご購入は、ご検討のあとで</span></div>
+      <div><b>手ぶらでOK</b><span>図面は、あればお持ちを</span></div>
+    </div>
+    <div class="cta-row"><a href="#reserve" class="btn f">ご予約フォームへ</a><a href="#flow" class="link">当日の流れを見る</a></div>
+    <p class="draft">※写真・内容はイメージです（架空のブランドによるデザイン見本）。</p>
+  </div></section>
+
+  <nav class="toc" aria-label="このページの目次"><div class="in">
+    <a href="#flow">当日の流れ</a><a href="#see">見られるもの</a><a href="#access">アクセス</a><a href="#qa">ご不安なこと</a><a href="#reserve">ご予約</a>
+  </div></nav>
+
+  <section class="sec" id="flow"><div class="wrap rv">
+    <p class="en">Flow</p><h2>当日は、こんな流れです。</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>ご挨拶・おはなし</h3><span class="term">約10分</span><p>お茶を飲みながら、お住まいの計画やお好みをうかがいます。決まっていなくても大丈夫です。</p></li>
+      <li><span class="n">2</span><h3>実物に触れる</h3><span class="term">約50分</span><p>椅子の座り心地、テーブルの手触り、木や布・革の見本をご自由にお確かめください。</p></li>
+      <li><span class="n">3</span><h3>ご相談・概算</h3><span class="term">約30分</span><p>気になった家具について、おおよその価格と納期をお伝えします。決めずにお帰りいただいて構いません。</p></li>
+    </ol>
+  </div></section>
+
+  <section class="sec" id="see"><div class="wrap rv">
+    <p class="en">What you can see</p><h2>ショールームで、見られるもの。</h2>
+    <div class="tiles">
+      <figure><img src="ch-leather-640.webp" alt="革張りのダイニングチェア" loading="lazy"><figcaption>座り心地の違いを、座って比べられます</figcaption></figure>
+      <figure><img src="sample-wood-480.webp" srcset="sample-wood-480.webp 480w, sample-wood-800.webp 800w" sizes="(min-width:760px) 232px, 33vw" width="480" height="600" style="height:auto" alt="樹種や仕上げの見本に手を伸ばす様子" loading="lazy"><figcaption>樹種・仕上げの見本を並べてご覧いただけます</figcaption></figure>
+      <figure><img src="craft-saw-700.webp" alt="木を削る職人の手元" loading="lazy" style="object-position:50% 50%"><figcaption>修理の見本や、製作途中の部材もご覧いただけます</figcaption></figure>
+    </div>
+    <p class="draft">※写真はイメージです（仮）。</p>
+  </div></section>
+
+  <section class="sec" id="access"><div class="wrap rv">
+    <p class="en">Access</p><h2>アクセス</h2>
+    <table class="tbl stack">
+      <tr><th>住所</th><td>〒107-0062 東京都港区南青山 0-0-0</td></tr>
+      <tr><th>最寄り駅</th><td>表参道駅 A5出口から徒歩約7分（仮）</td></tr>
+      <tr><th>営業時間</th><td>11:00–18:00（水曜定休・完全予約制）</td></tr>
+      <tr><th>お車で</th><td>近隣のコインパーキングをご案内します。（仮）</td></tr>
+    </table>
+    <div class="mapbox" role="img" aria-label="ショールームの位置を示す地図のイメージ">
+      <svg viewBox="0 0 640 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g fill="none" stroke="#c9c8c5" stroke-width="1.4"><path d="M0 90H640M0 210H640M120 0V300M300 0V300M480 0V300"/><path d="M0 40L640 150" stroke="#dcdbd8"/><path d="M200 300L420 0" stroke="#dcdbd8"/></g>
+        <g fill="#e6e5e2"><rect x="140" y="104" width="140" height="92"/><rect x="320" y="104" width="140" height="92"/><rect x="500" y="104" width="120" height="92"/><rect x="140" y="14" width="140" height="62"/><rect x="320" y="224" width="140" height="62"/></g>
+        <g transform="translate(390 120)"><path d="M0 0c-14 0-24 10-24 23 0 17 24 38 24 38s24-21 24-38c0-13-10-23-24-23z" fill="#222"/><circle cx="0" cy="23" r="8" fill="#fff"/></g>
+        <text x="390" y="204" text-anchor="middle" font-size="13" fill="#222" letter-spacing="3" font-family="serif">KUON</text>
+      </svg>
+    </div>
+    <p class="draft">※地図はイメージです。実際の運用ではGoogleマップなどを埋め込みます。</p>
+  </div></section>
+
+  <section class="sec" id="qa"><div class="wrap rv">
+    <p class="en">Q &amp; A</p><h2>ご来店前の、よくあるご不安。</h2>
+    <div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="a1" id="q1">買うつもりがなくても、行っていいですか？</button><div class="faq-a" id="a1" role="region" aria-labelledby="q1"><div><p>もちろんです。「見てみたい」「相談してみたい」だけでも歓迎しています。ご購入を急かすことはいたしません。</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="a2" id="q2">予約なしで行けますか？</button><div class="faq-a" id="a2" role="region" aria-labelledby="q2"><div><p>ショールームは完全予約制です。お一人ずつ専任スタッフがご案内するため、事前にご予約をお願いしています。</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="a3" id="q3">子ども連れでも大丈夫ですか？</button><div class="faq-a" id="a3" role="region" aria-labelledby="q3"><div><p>大丈夫です。お子さまも座り心地をお確かめください。ご予約時にお知らせいただければ、準備しておきます。</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="a4" id="q4">服装や持ち物は？</button><div class="faq-a" id="a4" role="region" aria-labelledby="q4"><div><p>普段のお姿で大丈夫です。間取りの図面や、お住まいの写真があれば、お持ちください。</p></div></div></div>
+      <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="a5" id="q5">日程の変更やキャンセルはできますか？</button><div class="faq-a" id="a5" role="region" aria-labelledby="q5"><div><p>ご予約の確定メールにあるご連絡先から、前日までお知らせください。費用はかかりません。</p></div></div></div>
+    </div>
+    <p class="draft">※回答の内容は仮のものです。</p>
+  </div></section>
+
+  <section class="sec form-wrap" id="reserve"><div class="wrap">
+    <p class="en">Reservation</p><h2>ご来店のご予約</h2>
+    <p class="sub lead">必須は、お名前・メールアドレス・第1希望日の3つです。ご希望をお知らせいただいたあと、担当が日時を確定してご連絡します（2営業日以内）。</p>
+    <form id="f" novalidate autocomplete="on">
+      <fieldset>
+        <legend class="st"><span>01</span>ご希望の日にち</legend>
+        <div class="row three">
+          <div class="fld" id="fl-d1"><label for="d1">第1希望日<span class="req">必須</span></label><div class="dp"><input id="d1" type="text" readonly data-date data-closed="3" data-max="180" placeholder="日にちを選ぶ" aria-describedby="e-d1" required><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><p class="em" id="e-d1" role="alert">日にちを選んでください。</p></div>
+          <div class="fld"><label for="d2">第2希望日<span class="opt">任意</span></label><div class="dp"><input id="d2" type="text" readonly data-date data-closed="3" data-max="180" placeholder="日にちを選ぶ"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><p class="em" id="e-d2" role="alert"></p></div>
+          <div class="fld"><label for="d3">第3希望日<span class="opt">任意</span></label><div class="dp"><input id="d3" type="text" readonly data-date data-closed="3" data-max="180" placeholder="日にちを選ぶ"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="1" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div><p class="em" id="e-d3" role="alert"></p></div>
+        </div>
+        <div class="row two" style="margin-top:20px">
+          <div class="fld"><label for="slot">ご希望の時間帯<span class="opt">任意</span></label><select id="slot" name="slot"><option value="">どちらでも</option><option>11:00〜13:00</option><option>13:00〜15:00</option><option>15:00〜17:00</option></select></div>
+          <div class="fld"><label for="ppl">ご来店の人数<span class="opt">任意</span></label><select id="ppl" name="ppl"><option value="">1名</option><option>2名</option><option>3名</option><option>4名以上</option></select></div>
+        </div>
+        <p class="hintbox">営業は 11:00–18:00。水曜は定休日です。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend class="st"><span>02</span>お客様の情報</legend>
+        <div class="row two">
+          <div class="fld" id="fl-name"><label for="name">お名前<span class="req">必須</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="例）山田 太郎" aria-describedby="e-name" required><p class="em" id="e-name" role="alert">お名前を入力してください。</p></div>
+          <div class="fld" id="fl-email"><label for="email">メールアドレス<span class="req">必須</span></label><input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="例）name@example.com" aria-describedby="e-email" required><p class="em" id="e-email" role="alert">メールアドレスを正しい形式で入力してください。</p></div>
+        </div>
+        <div class="fld" style="margin-top:20px"><label for="tel">お電話番号<span class="opt">任意</span></label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="例）090-0000-0000"><small style="display:block;margin-top:6px">当日のご連絡や、日程調整のお電話に使います。</small></div>
+      </fieldset>
+
+      <fieldset>
+        <legend class="st"><span>03</span>当日のご希望<small style="margin-left:auto;font-size:12px">決まっていなくても大丈夫です</small></legend>
+        <div class="fld"><div class="lb">見てみたいもの（複数選択可）</div>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="see" value="ダイニング"><span>ダイニング</span></label>
+            <label class="chip"><input type="checkbox" name="see" value="ソファ"><span>ソファ</span></label>
+            <label class="chip"><input type="checkbox" name="see" value="チェア"><span>チェア</span></label>
+            <label class="chip"><input type="checkbox" name="see" value="収納"><span>収納</span></label>
+            <label class="chip"><input type="checkbox" name="see" value="素材見本"><span>素材見本</span></label>
+            <label class="chip"><input type="checkbox" name="see" value="修理のご相談"><span>修理のご相談</span></label>
+          </div></div>
+        <div class="fld"><label for="stage">お住まいの計画<span class="opt">任意</span></label><select id="stage" name="stage"><option value="">選択してください</option><option>これから検討する</option><option>土地探し中</option><option>設計中</option><option>着工前</option><option>工事中</option><option>入居済み（買い替え・買い足し）</option></select></div>
+        <div class="fld"><label for="msg">ご要望・ご質問<span class="opt">任意</span></label><textarea id="msg" name="msg" placeholder="例）小さな子どもがいます／図面を持っていきます など"></textarea></div>
+      </fieldset>
+
+      <div class="cons" id="cons">
+        <label><input type="checkbox" id="agree" name="agree" aria-describedby="e-agree" required><span class="box"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3.2 3L12 3.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>個人情報の取り扱いに同意します<span class="req" style="margin-left:8px">必須</span></span></label>
+        <details><summary>個人情報の取り扱いについて（仮）</summary><p>ご入力いただいた内容は、ご来店のご案内とご連絡のためにのみ使用し、ご本人の同意なく第三者へ提供することはありません。※本ページは架空のブランドによるデザイン見本のため、実際の運用文面ではありません。</p></details>
+        <p class="em" id="e-agree" role="alert" style="margin-left:38px">同意にチェックを入れてください。</p>
+      </div>
+
+      <div class="submit">
+        <button type="submit" class="btn f" id="send">この内容で予約を申し込む</button>
+        <small>送信後、確認のメールをお送りします。日時は、担当からのご連絡をもって確定します（デモのため実際には送信されません）。</small>
+        <small>質問だけの場合は、<a href="contact.html" style="border-bottom:1px solid var(--ink)">お問い合わせ</a>へどうぞ。</small>
+      </div>
+    </form>
+  </div></section>
+</div>
+
+<section id="done" hidden aria-live="polite"><div class="wrap">
+  <svg class="ck" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" pathLength="1"/><path d="M28 50l14 14 27-30" pathLength="1"/></svg>
+  <p class="en">Thank you</p>
+  <h1 tabindex="-1" id="done-h">ご予約のお申し込みを<br class="pc">受け付けました</h1>
+  <p class="sub">担当より、2営業日以内に日時を確定するご連絡をいたします。<br class="pc">それまでは、日時は確定していません。</p>
+  <dl id="sum"></dl>
+  <p class="demo">※このページは架空のブランドによるデザイン見本です。入力内容は送信・保存されません。</p>
+  <div class="go"><a href="index.html" class="btn">トップへ戻る</a><a href="guide.html" class="link">ご購入ガイドを見る</a></div>
+</div></section>
+</main>
+
+<footer><div class="ft">
+  <a href="index.html" class="logo">久遠<small>KUON · EST. 1889</small></a>
+  <p>〒107-0062 東京都港区南青山 0-0-0<br>営業 11:00–18:00（水曜定休・要予約）</p>
+  <div class="fl"><a href="company.html">会社概要</a><a href="guide.html">ご購入ガイド</a><a href="visit.html">ご来店予約</a><a href="contact.html">お問い合わせ</a></div>
+  <p style="font-family:var(--en);letter-spacing:.2em;font-size:11px">© KUON 1889 — 本ページは架空のブランドによるデザイン見本です</p>
+</div></footer>
+
+<div id="sticky"><span class="t">予約制・売り込みなし<br>必須は3項目だけ</span><a href="#reserve" class="btn f">ご予約フォームへ</a></div>
+<script src="sub.js"></script>
+<script>
+var f=document.getElementById('f'),today=new Date();
+function pad(n){return String(n).padStart(2,'0')}
+var iso=today.getFullYear()+'-'+pad(today.getMonth()+1)+'-'+pad(today.getDate());
+
+/* 入力チェック */
+var MAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function mark(box,bad,msg,eid){box.classList.toggle('err',bad);var i=box.querySelector('input,select,textarea');if(i)i.setAttribute('aria-invalid',bad?'true':'false');if(msg&&eid)document.getElementById(eid).textContent=msg}
+var nameI=document.getElementById('name'),mailI=document.getElementById('email'),agree=document.getElementById('agree'),cons=document.getElementById('cons');
+function box(id){return document.getElementById(id).closest('.fld')}
+function okName(){return nameI.value.trim().length>0}
+function okMail(){return MAIL.test(mailI.value.trim())}
+// 日にちのチェック：空欄／過去／水曜（定休日）
+function chkDate(id,required){
+  var i=document.getElementById(id),v=i.dataset.iso||'',b=box(id),e='e-'+id;
+  if(!v){mark(b,required,required?'日にちを選んでください。':'',e);return !required}
+  var d=new Date(v+'T00:00:00');
+  if(d<new Date(iso+'T00:00:00')){mark(b,true,'本日以降の日にちを選んでください。',e);return false}
+  if(d.getDay()===3){mark(b,true,'水曜は定休日です。別の日をお選びください。',e);return false}
+  mark(b,false,'',e);return true;
+}
+['d1','d2','d3'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){chkDate(id,id==='d1')})});
+nameI.addEventListener('blur',function(){mark(box('name'),!okName())});
+mailI.addEventListener('blur',function(){mark(box('email'),!okMail())});
+nameI.addEventListener('input',function(){if(box('name').classList.contains('err'))mark(box('name'),!okName())});
+mailI.addEventListener('input',function(){if(box('email').classList.contains('err'))mark(box('email'),!okMail())});
+agree.addEventListener('change',function(){cons.classList.toggle('err',!agree.checked)});
+
+f.addEventListener('submit',function(e){
+  e.preventDefault();var bad=[];
+  if(!chkDate('d1',true))bad.push(document.getElementById('d1'));
+  if(!chkDate('d2',false))bad.push(document.getElementById('d2'));
+  if(!chkDate('d3',false))bad.push(document.getElementById('d3'));
+  mark(box('name'),!okName());if(!okName())bad.push(nameI);
+  mark(box('email'),!okMail());if(!okMail())bad.push(mailI);
+  cons.classList.toggle('err',!agree.checked);if(!agree.checked)bad.push(agree);
+  if(bad.length){bad[0].focus({preventScroll:true});bad[0].scrollIntoView({block:'center',behavior:'smooth'});return}
+  var btn=document.getElementById('send');btn.disabled=true;btn.textContent='送信しています…';
+  setTimeout(showDone,700);
+});
+
+/* 送信後の画面（デモ：実際には送信しません） */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var WD='日月火水木金土';
+function fmt(v){if(!v)return '';var d=new Date(v+'T00:00:00');return (d.getMonth()+1)+'月'+d.getDate()+'日（'+WD[d.getDay()]+'）'}
+function showDone(){
+  var d=new FormData(f),I=function(id){return document.getElementById(id).dataset.iso||''},rows=[['お名前',d.get('name')],['メール',d.get('email')],['第1希望',fmt(I('d1'))]];
+  if(I('d2'))rows.push(['第2希望',fmt(I('d2'))]);if(I('d3'))rows.push(['第3希望',fmt(I('d3'))]);
+  rows.push(['時間帯',d.get('slot')||'どちらでも']);rows.push(['人数',d.get('ppl')||'1名']);
+  var see=d.getAll('see');if(see.length)rows.push(['見たいもの',see.join('、')]);
+  document.getElementById('sum').innerHTML=rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('');
+  document.getElementById('page').hidden=true;document.getElementById('sticky').style.display='none';
+  var done=document.getElementById('done');done.hidden=false;requestAnimationFrame(function(){done.classList.add('show')});
+  window.scrollTo(0,0);document.getElementById('done-h').focus({preventScroll:true});
+}
+</script>
+</body>
+</html>
