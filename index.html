@@ -9,7 +9,8 @@
 <script>
 /* ページを開いたときは必ず先頭から表示し、見えない状態からふわっと表示する（スクロールして戻る動きを見せない） */
 (function(){try{history.scrollRestoration='manual'}catch(e){}
-if(location.hash)return;
+var nt='';try{nt=performance.getEntriesByType('navigation')[0].type}catch(e){}
+if(location.hash){if(nt==='reload'||nt==='back_forward'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}else return}
 var h=document.documentElement;h.classList.add('pg-in');
 function top(){h.style.scrollBehavior='auto';window.scrollTo(0,0);try{h.scrollIntoView({block:'start',behavior:'instant'})}catch(e){}h.style.scrollBehavior=''}
 function go(){top();requestAnimationFrame(function(){h.classList.remove('pg-in')})}
@@ -780,7 +781,6 @@ toTop.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto'
     var id=decodeURIComponent(a.getAttribute('href').slice(1)),el=id&&document.getElementById(id);
     if(!el)return;
     e.preventDefault();stop();
-    try{history.pushState(null,'','#'+id)}catch(x){}
     var start=window.scrollY;
     if(reduce){window.scrollTo(0,target(el));return}
     var dur=Math.min(2400,Math.max(1200,Math.abs(target(el)-start)*0.8)),t0=performance.now();   // 1200〜2400ミリ秒

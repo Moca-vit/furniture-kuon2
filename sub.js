@@ -151,7 +151,6 @@
     var id=decodeURIComponent(a.getAttribute('href').slice(1)),el=id&&document.getElementById(id);
     if(!el)return;
     e.preventDefault();stop();
-    try{history.pushState(null,'','#'+id)}catch(x){}
     var start=window.scrollY;
     if(reduce){window.scrollTo(0,target(el));return}
     var dur=Math.min(2400,Math.max(1200,Math.abs(target(el)-start)*0.8)),t0=performance.now();   // 1200〜2400ミリ秒
