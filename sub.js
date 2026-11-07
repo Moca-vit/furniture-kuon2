@@ -154,7 +154,7 @@
     try{history.pushState(null,'','#'+id)}catch(x){}
     var start=window.scrollY;
     if(reduce){window.scrollTo(0,target(el));return}
-    var dur=Math.min(1800,Math.max(900,Math.abs(target(el)-start)*0.6)),t0=performance.now();   // 900〜1800ミリ秒
+    var dur=Math.min(2400,Math.max(1200,Math.abs(target(el)-start)*0.8)),t0=performance.now();   // 1200〜2400ミリ秒
     root.style.scrollBehavior='auto';
     (function step(now){
       var p=Math.min(1,(now-t0)/dur),to=target(el);                      // 毎回、行き先を測り直す（画像の読み込みでずれても追従）
