@@ -764,5 +764,34 @@ toTop.addEventListener('click',function(){scrollTo({top:0,behavior:reduce?'auto'
   },{passive:true});
 })();
 </script>
+<script>
+/* ページ内リンクをやわらかく動かす：動きの速さ・なめらかさはここで調整（dur の数字） */
+(function(){
+  var root=document.documentElement,raf=0;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}           // ゆっくり始まり、ゆっくり止まる
+  function target(el){var m=parseFloat(getComputedStyle(el).scrollMarginTop)||0;
+    return Math.max(0,Math.min(el.getBoundingClientRect().top+window.scrollY-m,root.scrollHeight-window.innerHeight))}
+  function stop(){if(raf){cancelAnimationFrame(raf);raf=0}root.style.scrollBehavior=''}
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,stop,{passive:true})});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey)return;
+    var id=decodeURIComponent(a.getAttribute('href').slice(1)),el=id&&document.getElementById(id);
+    if(!el)return;
+    e.preventDefault();stop();
+    try{history.pushState(null,'','#'+id)}catch(x){}
+    var start=window.scrollY;
+    if(reduce){window.scrollTo(0,target(el));return}
+    var dur=Math.min(1800,Math.max(900,Math.abs(target(el)-start)*0.6)),t0=performance.now();   // 900〜1800ミリ秒
+    root.style.scrollBehavior='auto';
+    (function step(now){
+      var p=Math.min(1,(now-t0)/dur),to=target(el);                      // 毎回、行き先を測り直す（画像の読み込みでずれても追従）
+      window.scrollTo(0,start+(to-start)*ease(p));
+      if(p<1)raf=requestAnimationFrame(step);else{raf=0;root.style.scrollBehavior=''}
+    })(t0);
+  });
+})();
+</script>
 </body>
 </html>
