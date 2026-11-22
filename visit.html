@@ -5,86 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ご来店予約｜久遠 KUON</title>
 <meta name="description" content="東京・青山のショールームは完全予約制。当日の流れと、ご予約フォーム（デモ）">
-<script>
-/* ページを開いたときは必ず先頭から表示し、見えない状態からふわっと表示する（スクロールして戻る動きを見せない） */
-(function(){try{history.scrollRestoration='manual'}catch(e){}
-var nt='';try{nt=performance.getEntriesByType('navigation')[0].type}catch(e){}
-if(location.hash){if(nt==='reload'||nt==='back_forward'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}else return}
-var h=document.documentElement;h.classList.add('pg-in');
-function top(){h.style.scrollBehavior='auto';window.scrollTo(0,0);try{h.scrollIntoView({block:'start',behavior:'instant'})}catch(e){}h.style.scrollBehavior=''}
-function go(){top();requestAnimationFrame(function(){h.classList.remove('pg-in')})}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
-var moved=false;['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(){moved=true},{once:true,passive:true})});
-addEventListener('load',function(){if(!moved)top()});
-setTimeout(function(){h.classList.remove('pg-in')},1500);
-})();
-</script>
-<link rel="stylesheet" href="sub.css">
-<style>
-.vhero{margin:calc(72px) 0 0;position:relative}
-.vhero img{display:block;width:100%;height:clamp(240px,42vw,460px);object-fit:cover;object-position:50% 64%;background:#e2e2e2}
-.vhead{padding-top:clamp(40px,6vw,72px)}
-.pts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
-@media(min-width:640px){.pts{grid-template-columns:repeat(4,1fr)}}
-.pts>div{border:1px solid var(--line);padding:18px 12px;text-align:center;line-height:1.6}
-.pts b{display:block;font-weight:500;font-size:16px;letter-spacing:.08em}
-.pts span{display:block;font-size:12px;color:var(--sub);margin-top:2px}
-.cta-row{margin-top:32px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.cta-row .btn{width:100%}@media(min-width:640px){.cta-row{flex-direction:row;align-items:center;gap:24px}.cta-row .btn{width:auto}}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:28px}
-.tiles figure img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#e2e2e2}
-.tiles figcaption{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.7;letter-spacing:.06em}
-.mapbox{margin-top:24px;border:1px solid var(--line);background:var(--bg2);aspect-ratio:16/9;max-height:300px;width:100%}
-.mapbox svg{display:block;width:100%;height:100%}
-/* フォーム */
-.form-wrap fieldset{border:0;min-width:0;margin-bottom:clamp(40px,6vw,56px)}
-.st{display:flex;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:24px;font-size:17px;letter-spacing:.12em;line-height:1.6}
-.st span{font-family:var(--en);letter-spacing:.2em;font-size:13px;color:var(--sub)}
-legend.st{float:left;width:100%}legend.st~*{clear:both}
-.row{display:grid;gap:20px}
-@media(min-width:640px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:repeat(3,1fr)}}
-.fld{margin-bottom:20px}.row .fld{margin-bottom:0}
-.fld>label,.fld>.lb{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.1em;margin-bottom:8px}
-.req,.opt{font-size:10px;letter-spacing:.1em;line-height:1;padding:4px 7px;border-radius:var(--radius)}
-.req{background:var(--ink);color:#fff}.opt{border:1px solid var(--line);color:var(--sub)}
-.fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld input[type=date],.fld select,.fld textarea{width:100%;min-height:52px;padding:12px 14px;font-size:16px;border:1px solid #bdbdbd;border-radius:var(--radius);background:#fff;transition:border-color .25s,box-shadow .25s;appearance:none;-webkit-appearance:none}
-.fld select{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23222' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 16px center;padding-right:40px}
-.fld textarea{min-height:140px;line-height:1.9;resize:vertical}
-.fld input:hover,.fld select:hover,.fld textarea:hover{border-color:var(--ink)}
-.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px rgba(34,34,34,.12)}
-.em{display:none;margin-top:6px;font-size:12px;letter-spacing:.06em;color:var(--ink);font-weight:500}.em::before{content:"！ "}
-.fld.err input,.fld.err select,.fld.err textarea,.cons.err .box{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
-.fld.err .em,.cons.err .em{display:block}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{position:relative}
-.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
-.chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid #bdbdbd;border-radius:var(--radius);font-size:14px;letter-spacing:.06em;transition:background .25s,color .25s,border-color .25s}
-.chip:hover span{border-color:var(--ink)}
-.chip input:checked+span{background:var(--ink);border-color:var(--ink);color:#fff}
-.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
-.cons{margin:8px 0 28px}
-.cons label{display:flex;gap:14px;align-items:flex-start;cursor:pointer;line-height:1.8}
-.cons input{position:absolute;opacity:0;width:1px;height:1px}
-.cons .box{flex:none;width:24px;height:24px;margin-top:2px;border:1px solid #8a8a8a;border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;transition:.25s}
-.cons .box svg{width:14px;height:14px;opacity:0;transform:scale(.6);transition:.25s}
-.cons input:checked+.box{background:var(--ink);border-color:var(--ink)}.cons input:checked+.box svg{opacity:1;transform:none}
-.cons input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
-.cons details{margin:10px 0 0 38px;font-size:12px;color:var(--sub)}.cons summary{cursor:pointer;display:inline-block;min-height:32px}.cons details p{margin-top:6px;line-height:1.9}
-.submit{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
-.submit .btn{width:100%;font-size:15px}@media(min-width:640px){.submit .btn{width:auto;min-width:320px}}
-.submit .btn[disabled]{opacity:.6;cursor:progress}
-.hintbox{font-size:12px;color:var(--sub);margin-top:8px}
-/* 完了 */
-#done{padding:calc(72px + clamp(64px,9vw,120px)) 0 0;text-align:center}#done[hidden]{display:none}
-.ck{width:96px;height:96px;margin:0 auto 32px}
-.ck circle,.ck path{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
-#done.show .ck circle{animation:dr .9s ease forwards}#done.show .ck path{animation:dr .5s .8s ease forwards}
-@keyframes dr{to{stroke-dashoffset:0}}
-#done dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;text-align:left;margin:40px auto 0;max-width:520px;padding:28px;border:1px solid var(--line);font-size:14px}
-#done dt{color:var(--sub);font-size:12px;letter-spacing:.1em;padding-top:2px}#done dd{word-break:break-all}
-#done .demo{margin:28px auto 0;max-width:520px;font-size:12px;color:var(--sub);line-height:1.9}
-#done .go{margin-top:40px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;align-items:center}
-</style>
+<script src="js/page-in.js"></script>
+<link rel="stylesheet" href="css/sub.css">
+<link rel="stylesheet" href="css/visit.css">
 </head>
 <body>
 <div id="rp" aria-hidden="true"></div>
@@ -95,7 +18,7 @@ legend.st{float:left;width:100%}legend.st~*{clear:both}
 
 <main>
 <div id="page">
-  <figure class="vhero"><img src="assets/showroom-1300.webp" srcset="assets/showroom-700.webp 700w, assets/showroom-1300.webp 1300w" sizes="100vw" alt="大きな窓から光が差し込むショールームの内観" width="1300" height="868"></figure>
+  <figure class="vhero"><img src="images/showroom-1300.webp" srcset="images/showroom-700.webp 700w, images/showroom-1300.webp 1300w" sizes="100vw" alt="大きな窓から光が差し込むショールームの内観" width="1300" height="868"></figure>
 
   <section class="vhead"><div class="wrap">
     <p class="en">Showroom Visit</p>
@@ -127,9 +50,9 @@ legend.st{float:left;width:100%}legend.st~*{clear:both}
   <section class="sec" id="see"><div class="wrap rv">
     <p class="en">What you can see</p><h2>ショールームで、見られるもの。</h2>
     <div class="tiles">
-      <figure><img src="assets/ch-leather-640.webp" alt="革張りのダイニングチェア" loading="lazy"><figcaption>座り心地の違いを、座って比べられます</figcaption></figure>
-      <figure><img src="assets/sample-wood-480.webp" srcset="assets/sample-wood-480.webp 480w, assets/sample-wood-800.webp 800w" sizes="(min-width:760px) 232px, 33vw" width="480" height="600" style="height:auto" alt="樹種や仕上げの見本に手を伸ばす様子" loading="lazy"><figcaption>樹種・仕上げの見本を並べてご覧いただけます</figcaption></figure>
-      <figure><img src="assets/craft-saw-700.webp" alt="木を削る職人の手元" loading="lazy" style="object-position:50% 50%"><figcaption>修理の見本や、製作途中の部材もご覧いただけます</figcaption></figure>
+      <figure><img src="images/ch-leather-640.webp" alt="革張りのダイニングチェア" loading="lazy"><figcaption>座り心地の違いを、座って比べられます</figcaption></figure>
+      <figure><img src="images/sample-wood-480.webp" srcset="images/sample-wood-480.webp 480w, images/sample-wood-800.webp 800w" sizes="(min-width:760px) 232px, 33vw" width="480" height="600" style="height:auto" alt="樹種や仕上げの見本に手を伸ばす様子" loading="lazy"><figcaption>樹種・仕上げの見本を並べてご覧いただけます</figcaption></figure>
+      <figure><img src="images/craft-saw-700.webp" alt="木を削る職人の手元" loading="lazy" style="object-position:50% 50%"><figcaption>修理の見本や、製作途中の部材もご覧いただけます</figcaption></figure>
     </div>
     <p class="draft">※写真はイメージです（仮）。</p>
   </div></section>
@@ -241,62 +164,7 @@ legend.st{float:left;width:100%}legend.st~*{clear:both}
 </div></footer>
 
 <div id="sticky"><span class="t">予約制・売り込みなし<br>必須は3項目だけ</span><a href="#reserve" class="btn f">ご予約フォームへ</a></div>
-<script src="sub.js"></script>
-<script>
-var f=document.getElementById('f'),today=new Date();
-function pad(n){return String(n).padStart(2,'0')}
-var iso=today.getFullYear()+'-'+pad(today.getMonth()+1)+'-'+pad(today.getDate());
-
-/* 入力チェック */
-var MAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-function mark(box,bad,msg,eid){box.classList.toggle('err',bad);var i=box.querySelector('input,select,textarea');if(i)i.setAttribute('aria-invalid',bad?'true':'false');if(msg&&eid)document.getElementById(eid).textContent=msg}
-var nameI=document.getElementById('name'),mailI=document.getElementById('email'),agree=document.getElementById('agree'),cons=document.getElementById('cons');
-function box(id){return document.getElementById(id).closest('.fld')}
-function okName(){return nameI.value.trim().length>0}
-function okMail(){return MAIL.test(mailI.value.trim())}
-// 日にちのチェック：空欄／過去／水曜（定休日）
-function chkDate(id,required){
-  var i=document.getElementById(id),v=i.dataset.iso||'',b=box(id),e='e-'+id;
-  if(!v){mark(b,required,required?'日にちを選んでください。':'',e);return !required}
-  var d=new Date(v+'T00:00:00');
-  if(d<new Date(iso+'T00:00:00')){mark(b,true,'本日以降の日にちを選んでください。',e);return false}
-  if(d.getDay()===3){mark(b,true,'水曜は定休日です。別の日をお選びください。',e);return false}
-  mark(b,false,'',e);return true;
-}
-['d1','d2','d3'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){chkDate(id,id==='d1')})});
-nameI.addEventListener('blur',function(){mark(box('name'),!okName())});
-mailI.addEventListener('blur',function(){mark(box('email'),!okMail())});
-nameI.addEventListener('input',function(){if(box('name').classList.contains('err'))mark(box('name'),!okName())});
-mailI.addEventListener('input',function(){if(box('email').classList.contains('err'))mark(box('email'),!okMail())});
-agree.addEventListener('change',function(){cons.classList.toggle('err',!agree.checked)});
-
-f.addEventListener('submit',function(e){
-  e.preventDefault();var bad=[];
-  if(!chkDate('d1',true))bad.push(document.getElementById('d1'));
-  if(!chkDate('d2',false))bad.push(document.getElementById('d2'));
-  if(!chkDate('d3',false))bad.push(document.getElementById('d3'));
-  mark(box('name'),!okName());if(!okName())bad.push(nameI);
-  mark(box('email'),!okMail());if(!okMail())bad.push(mailI);
-  cons.classList.toggle('err',!agree.checked);if(!agree.checked)bad.push(agree);
-  if(bad.length){bad[0].focus({preventScroll:true});bad[0].scrollIntoView({block:'center',behavior:'smooth'});return}
-  var btn=document.getElementById('send');btn.disabled=true;btn.textContent='送信しています…';
-  setTimeout(showDone,700);
-});
-
-/* 送信後の画面（デモ：実際には送信しません） */
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-var WD='日月火水木金土';
-function fmt(v){if(!v)return '';var d=new Date(v+'T00:00:00');return (d.getMonth()+1)+'月'+d.getDate()+'日（'+WD[d.getDay()]+'）'}
-function showDone(){
-  var d=new FormData(f),I=function(id){return document.getElementById(id).dataset.iso||''},rows=[['お名前',d.get('name')],['メール',d.get('email')],['第1希望',fmt(I('d1'))]];
-  if(I('d2'))rows.push(['第2希望',fmt(I('d2'))]);if(I('d3'))rows.push(['第3希望',fmt(I('d3'))]);
-  rows.push(['時間帯',d.get('slot')||'どちらでも']);rows.push(['人数',d.get('ppl')||'1名']);
-  var see=d.getAll('see');if(see.length)rows.push(['見たいもの',see.join('、')]);
-  document.getElementById('sum').innerHTML=rows.map(function(r){return '<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>'}).join('');
-  document.getElementById('page').hidden=true;document.getElementById('sticky').style.display='none';
-  var done=document.getElementById('done');done.hidden=false;requestAnimationFrame(function(){done.classList.add('show')});
-  window.scrollTo(0,0);document.getElementById('done-h').focus({preventScroll:true});
-}
-</script>
+<script src="js/sub.js"></script>
+<script src="js/visit.js"></script>
 </body>
 </html>
