@@ -1,6 +1,6 @@
 # 久遠 KUON（デザイン見本）
 
-架空ブランドのデザイン見本です。
+架空老舗家具メーカーブランドのデザイン見本です。
 
 https://moca-vit.github.io/furniture-kuon2/
 
